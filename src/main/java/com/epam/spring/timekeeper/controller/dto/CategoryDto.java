@@ -1,11 +1,13 @@
 package com.epam.spring.timekeeper.controller.dto;
 
 import com.epam.spring.timekeeper.service.model.enums.CategoryStatus;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.Set;
 
 @Data
+@Builder
 public class CategoryDto {
 
     int id;
