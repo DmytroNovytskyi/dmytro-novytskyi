@@ -1,11 +1,14 @@
 package com.epam.spring.homework4.controller;
 
 import com.epam.spring.homework4.controller.dto.ActivityDto;
+import com.epam.spring.homework4.controller.dto.validation.group.OnCreate;
+import com.epam.spring.homework4.controller.dto.validation.group.OnUpdate;
 import com.epam.spring.homework4.service.ActivityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,14 +29,14 @@ public class ActivityController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/activity")
-    public ActivityDto createActivity(@RequestBody ActivityDto activity) {
+    public ActivityDto createActivity(@RequestBody @Validated(OnCreate.class) ActivityDto activity) {
         log.info("accepted request to create activity with name:{}", activity.getName());
         return activityService.create(activity);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/activity")
-    public ActivityDto updateActivity(@RequestBody ActivityDto activity) {
+    public ActivityDto updateActivity(@RequestBody @Validated(OnUpdate.class) ActivityDto activity) {
         log.info("accepted request to update activity with id:{}", activity.getId());
         return activityService.update(activity);
     }

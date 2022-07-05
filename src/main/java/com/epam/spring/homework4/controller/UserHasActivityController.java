@@ -1,11 +1,14 @@
 package com.epam.spring.homework4.controller;
 
 import com.epam.spring.homework4.controller.dto.UserHasActivityDto;
+import com.epam.spring.homework4.controller.dto.validation.group.OnCreate;
+import com.epam.spring.homework4.controller.dto.validation.group.OnUpdate;
 import com.epam.spring.homework4.service.UserHasActivityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +29,7 @@ public class UserHasActivityController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/user-has-activity")
-    public UserHasActivityDto requestActivity(@RequestBody UserHasActivityDto userHasActivity) {
+    public UserHasActivityDto requestActivity(@RequestBody @Validated(OnCreate.class) UserHasActivityDto userHasActivity) {
         log.info("accepted request to request activity for user:{} and activity:{}",
                 userHasActivity.getUser().getUsername(),
                 userHasActivity.getActivity().getName());
@@ -35,7 +38,7 @@ public class UserHasActivityController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/user-has-activity")
-    public UserHasActivityDto updateUserHasActivity(@RequestBody UserHasActivityDto userHasActivity) {
+    public UserHasActivityDto updateUserHasActivity(@RequestBody @Validated(OnUpdate.class) UserHasActivityDto userHasActivity) {
         log.info("accepted request to update userHasActivity with id:{}", userHasActivity.getId());
         return userHasActivityService.update(userHasActivity);
     }

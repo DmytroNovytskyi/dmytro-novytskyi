@@ -1,11 +1,14 @@
 package com.epam.spring.homework4.controller;
 
 import com.epam.spring.homework4.controller.dto.UserDto;
+import com.epam.spring.homework4.controller.dto.validation.group.OnCreate;
+import com.epam.spring.homework4.controller.dto.validation.group.OnUpdate;
 import com.epam.spring.homework4.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,14 +29,14 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/user")
-    public UserDto createUser(@RequestBody UserDto user) {
+    public UserDto createUser(@RequestBody @Validated(OnCreate.class) UserDto user) {
         log.info("accepted request to create user with name:{}", user.getUsername());
         return userService.create(user);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/user")
-    public UserDto updateUser(@RequestBody UserDto user) {
+    public UserDto updateUser(@RequestBody @Validated(OnUpdate.class) UserDto user) {
         log.info("accepted request to update user with name:{}", user.getUsername());
         return userService.update(user);
     }
