@@ -13,7 +13,7 @@ public class Pet {
         this.animals = animals;
     }
 
-    public void printPets(){
+    public void printPets() {
         animals.forEach(System.out::println);
     }
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OtherBeanB {
 
-    BeanB beanB;
+    private BeanB beanB;
 
     @Autowired
     public void setBean(BeanB beanB) {
@@ -16,4 +16,5 @@ public class OtherBeanB {
                 + ". " + beanB.getClass().getSimpleName()
                 + " was injected through the constructor");
     }
+
 }
