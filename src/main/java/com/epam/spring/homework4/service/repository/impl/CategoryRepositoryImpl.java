@@ -51,7 +51,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     public Category update(Category entity) {
         Category category = null;
         Optional<Category> categoryOptional = categories.stream()
-                .filter(c -> c.getId() == id)
+                .filter(c -> c.getId() == entity.getId())
                 .findFirst();
         if (categoryOptional.isPresent()) {
             category = categoryOptional.get();

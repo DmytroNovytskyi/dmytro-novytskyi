@@ -51,7 +51,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User update(User entity) {
         User user = null;
         Optional<User> userOptional = users.stream()
-                .filter(a -> a.getId() == id)
+                .filter(a -> a.getId() == entity.getId())
                 .findFirst();
         if (userOptional.isPresent()) {
             user = userOptional.get();

@@ -2,7 +2,7 @@ package com.epam.spring.homework4.service.impl;
 
 import com.epam.spring.homework4.controller.dto.UserHasActivityDto;
 import com.epam.spring.homework4.service.UserHasActivityService;
-import com.epam.spring.homework4.service.exception.NotFoundException;
+import com.epam.spring.homework4.service.exception.UserHasActivityNotFoundException;
 import com.epam.spring.homework4.service.mapper.UserHasActivityMapper;
 import com.epam.spring.homework4.service.model.UserHasActivity;
 import com.epam.spring.homework4.service.repository.UserHasActivityRepository;
@@ -43,7 +43,7 @@ public class UserHasActivityServiceImpl implements UserHasActivityService {
         log.info("updating userHasActivity with id:{}", userHasActivity.getId());
         UserHasActivity stored = userHasActivityRepository.findById(userHasActivity.getId());
         if (stored == null) {
-            throw new NotFoundException("No userHasActivity with id=" + userHasActivity.getId() + " was found to update.");
+            throw new UserHasActivityNotFoundException();
         }
         UserHasActivityMapper.INSTANCE.mapPresentFields(stored, userHasActivity);
         return UserHasActivityMapper.INSTANCE.mapUserHasActivityDto(userHasActivityRepository.update(stored));
@@ -53,7 +53,7 @@ public class UserHasActivityServiceImpl implements UserHasActivityService {
     public void delete(int userHasActivityId) {
         log.info("deleting userHasActivity with id:{}", userHasActivityId);
         if (userHasActivityRepository.findById(userHasActivityId) == null) {
-            throw new NotFoundException("No userHasActivity with id=" + userHasActivityId + " was found to delete.");
+            throw new UserHasActivityNotFoundException();
         }
         userHasActivityRepository.deleteById(userHasActivityId);
     }

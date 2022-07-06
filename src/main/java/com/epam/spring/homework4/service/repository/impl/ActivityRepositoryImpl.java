@@ -51,7 +51,7 @@ public class ActivityRepositoryImpl implements ActivityRepository {
     public Activity update(Activity entity) {
         Activity activity = null;
         Optional<Activity> activityOptional = activities.stream()
-                .filter(a -> a.getId() == id)
+                .filter(a -> a.getId() == entity.getId())
                 .findFirst();
         if (activityOptional.isPresent()) {
             activity = activityOptional.get();

@@ -2,7 +2,7 @@ package com.epam.spring.homework4.service.impl;
 
 import com.epam.spring.homework4.controller.dto.ActivityDto;
 import com.epam.spring.homework4.service.ActivityService;
-import com.epam.spring.homework4.service.exception.NotFoundException;
+import com.epam.spring.homework4.service.exception.ActivityNotFoundException;
 import com.epam.spring.homework4.service.mapper.ActivityMapper;
 import com.epam.spring.homework4.service.model.Activity;
 import com.epam.spring.homework4.service.model.UserHasActivity;
@@ -44,7 +44,7 @@ public class ActivityServiceImpl implements ActivityService {
         log.info("updating activity with id:{}", activity.getId());
         Activity stored = activityRepository.findById(activity.getId());
         if (stored == null) {
-            throw new NotFoundException("No activity with id=" + activity.getId() + " was found to update.");
+            throw new ActivityNotFoundException();
         }
         ActivityMapper.INSTANCE.mapPresentFields(stored, activity);
         Activity updated = activityRepository.update(stored);
@@ -55,7 +55,7 @@ public class ActivityServiceImpl implements ActivityService {
     public void delete(int activityId) {
         log.info("deleting activity with id:{}", activityId);
         if (activityRepository.findById(activityId) == null) {
-            throw new NotFoundException("No activity with id=" + activityId + " was found to delete.");
+            throw new ActivityNotFoundException();
         }
         activityRepository.deleteById(activityId);
     }

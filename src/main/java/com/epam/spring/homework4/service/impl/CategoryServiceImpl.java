@@ -2,7 +2,7 @@ package com.epam.spring.homework4.service.impl;
 
 import com.epam.spring.homework4.controller.dto.CategoryDto;
 import com.epam.spring.homework4.service.CategoryService;
-import com.epam.spring.homework4.service.exception.NotFoundException;
+import com.epam.spring.homework4.service.exception.CategoryNotFoundException;
 import com.epam.spring.homework4.service.mapper.CategoryMapper;
 import com.epam.spring.homework4.service.model.Category;
 import com.epam.spring.homework4.service.repository.CategoryRepository;
@@ -41,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
         log.info("updating category with id:{}", category.getId());
         Category stored = categoryRepository.findById(category.getId());
         if (stored == null) {
-            throw new NotFoundException("No category with id=" + category.getId() + " was found to update.");
+            throw new CategoryNotFoundException();
         }
         CategoryMapper.INSTANCE.mapPresentFields(stored, category);
         return CategoryMapper.INSTANCE.mapCategoryDto(categoryRepository.update(stored));
@@ -51,7 +51,7 @@ public class CategoryServiceImpl implements CategoryService {
     public void delete(int categoryId) {
         log.info("deleting category with id:{}", categoryId);
         if (categoryRepository.findById(categoryId) == null) {
-            throw new NotFoundException("No category with id=" + categoryId + " was found to delete.");
+            throw new CategoryNotFoundException();
         }
         categoryRepository.deleteById(categoryId);
     }

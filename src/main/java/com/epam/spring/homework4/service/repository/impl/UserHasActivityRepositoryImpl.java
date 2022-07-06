@@ -55,7 +55,7 @@ public class UserHasActivityRepositoryImpl implements UserHasActivityRepository 
     public UserHasActivity update(UserHasActivity entity) {
         UserHasActivity userHasActivity = null;
         Optional<UserHasActivity> userHasActivityOptional = userHasActivities.stream()
-                .filter(u -> u.getId() == id)
+                .filter(u -> u.getId() == entity.getId())
                 .findFirst();
         if (userHasActivityOptional.isPresent()) {
             userHasActivity = userHasActivityOptional.get();
