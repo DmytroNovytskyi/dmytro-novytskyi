@@ -15,8 +15,8 @@ import java.util.Optional;
 @Slf4j
 public class UserRepositoryImpl implements UserRepository {
 
-    private int id;
     private final List<User> users = new ArrayList<>();
+    private int id;
 
     @Override
     public User create(User entity) {

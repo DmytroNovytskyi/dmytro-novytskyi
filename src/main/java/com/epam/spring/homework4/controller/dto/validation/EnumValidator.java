@@ -11,9 +11,13 @@ import java.lang.annotation.*;
 public @interface EnumValidator {
 
     String name();
+
     Class<? extends Enum<?>> enumClass();
+
     String message() default "{name} must be any of enum {enumClass}";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 
 }

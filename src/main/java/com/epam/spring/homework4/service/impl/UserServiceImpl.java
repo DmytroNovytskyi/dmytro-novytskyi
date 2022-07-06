@@ -1,7 +1,7 @@
 package com.epam.spring.homework4.service.impl;
 
-import com.epam.spring.homework4.service.UserService;
 import com.epam.spring.homework4.controller.dto.UserDto;
+import com.epam.spring.homework4.service.UserService;
 import com.epam.spring.homework4.service.exception.NotFoundException;
 import com.epam.spring.homework4.service.mapper.UserMapper;
 import com.epam.spring.homework4.service.model.User;
@@ -39,17 +39,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto update(UserDto user) {
         log.info("updating user with id:{}", user.getId());
-        if(userRepository.findById(user.getId()) == null){
+        User stored = userRepository.findById(user.getId());
+        if (stored == null) {
             throw new NotFoundException("No user with id=" + user.getId() + " was found to update.");
         }
-        User updated = userRepository.update(UserMapper.INSTANCE.mapUser(user));
-        return UserMapper.INSTANCE.mapUserDto(updated);
+        UserMapper.INSTANCE.mapPresentFields(stored, user);
+        return UserMapper.INSTANCE.mapUserDto(userRepository.update(stored));
     }
 
     @Override
     public void delete(int userId) {
         log.info("deleting user with id:{}", userId);
-        if(userRepository.findById(userId) == null){
+        if (userRepository.findById(userId) == null) {
             throw new NotFoundException("No user with id=" + userId + " was found to delete.");
         }
         userRepository.deleteById(userId);

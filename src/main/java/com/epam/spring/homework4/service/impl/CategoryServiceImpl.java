@@ -1,8 +1,7 @@
 package com.epam.spring.homework4.service.impl;
 
-
-import com.epam.spring.homework4.service.CategoryService;
 import com.epam.spring.homework4.controller.dto.CategoryDto;
+import com.epam.spring.homework4.service.CategoryService;
 import com.epam.spring.homework4.service.exception.NotFoundException;
 import com.epam.spring.homework4.service.mapper.CategoryMapper;
 import com.epam.spring.homework4.service.model.Category;
@@ -40,17 +39,18 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto update(CategoryDto category) {
         log.info("updating category with id:{}", category.getId());
-        if(categoryRepository.findById(category.getId()) == null){
+        Category stored = categoryRepository.findById(category.getId());
+        if (stored == null) {
             throw new NotFoundException("No category with id=" + category.getId() + " was found to update.");
         }
-        Category entity = CategoryMapper.INSTANCE.mapCategory(category);
-        return CategoryMapper.INSTANCE.mapCategoryDto(categoryRepository.update(entity));
+        CategoryMapper.INSTANCE.mapPresentFields(stored, category);
+        return CategoryMapper.INSTANCE.mapCategoryDto(categoryRepository.update(stored));
     }
 
     @Override
     public void delete(int categoryId) {
         log.info("deleting category with id:{}", categoryId);
-        if(categoryRepository.findById(categoryId) == null){
+        if (categoryRepository.findById(categoryId) == null) {
             throw new NotFoundException("No category with id=" + categoryId + " was found to delete.");
         }
         categoryRepository.deleteById(categoryId);

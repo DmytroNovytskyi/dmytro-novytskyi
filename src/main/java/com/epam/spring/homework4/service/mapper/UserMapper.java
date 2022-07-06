@@ -4,9 +4,11 @@ import com.epam.spring.homework4.controller.dto.UserDto;
 import com.epam.spring.homework4.service.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
@@ -15,5 +17,7 @@ public interface UserMapper {
     UserDto mapUserDto(User user);
 
     User mapUser(UserDto userDto);
+
+    void mapPresentFields(@MappingTarget User user, UserDto userDto);
 
 }
