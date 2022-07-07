@@ -17,29 +17,30 @@ public class UserHasActivityDto {
 
     int id;
 
-    @NotNull(message = "user should not be null", groups = OnCreate.class)
-    @Null(message = "user should be null", groups = OnUpdate.class)
+    @NotNull(message = "{userHasActivity.user.notNull}", groups = OnCreate.class)
+    @Null(message = "{userHasActivity.user.null}", groups = OnUpdate.class)
     UserDto user;
 
-    @NotNull(message = "activity should not be null", groups = OnCreate.class)
-    @Null(message = "activity should be null", groups = OnUpdate.class)
+    @NotNull(message = "{userHasActivity.activity.notNull}", groups = OnCreate.class)
+    @Null(message = "{userHasActivity.activity.null}", groups = OnUpdate.class)
     ActivityDto activity;
 
-    @EnumValidator(name = "status", enumClass = UserHasActivityStatus.class)
-    @Null(message = "status should be null", groups = OnCreate.class)
-    @NotNull(message = "status should not be null", groups = OnUpdate.class)
+    @EnumValidator(name = "{userHasActivity.status.name}",
+            enumClass = UserHasActivityStatus.class)
+    @Null(message = "{userHasActivity.status.null}", groups = OnCreate.class)
+    @NotNull(message = "{userHasActivity.status.notNull}", groups = OnUpdate.class)
     String status;
 
-    @Null(message = "startTime should be null")
+    @Null(message = "{userHasActivity.startTime.null}")
     Timestamp startTime;
 
-    @Null(message = "endTime should be null")
+    @Null(message = "{userHasActivity.endTime.null}")
     Timestamp endTime;
 
-    @Null(message = "creationDate should be null")
+    @Null(message = "{userHasActivity.creationDate.null}")
     Timestamp creationDate;
 
-    @Null(message = "timeSpent should be null")
+    @Null(message = "{userHasActivity.timeSpent.null}")
     String timeSpent;
 
 }

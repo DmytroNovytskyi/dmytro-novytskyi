@@ -14,7 +14,7 @@ public @interface EnumValidator {
 
     Class<? extends Enum<?>> enumClass();
 
-    String message() default "{name} must be any of enum {enumClass}";
+    String message() default "{name} {common.enumValidator} {enumClass}";
 
     Class<?>[] groups() default {};
 

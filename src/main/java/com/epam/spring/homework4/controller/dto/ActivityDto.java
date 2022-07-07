@@ -15,20 +15,20 @@ public class ActivityDto {
 
     int id;
 
-    @NotNull(message = "category should not be null", groups = OnCreate.class)
+    @NotNull(message = "{activity.category.notNull}", groups = OnCreate.class)
     CategoryDto category;
 
-    @Pattern(message = "activity name is not valid(^[\\sa-zA-Z0-9/.-]{8,45}$)", regexp = "^[\\sa-zA-Z0-9/.-]{8,45}$")
-    @NotNull(message = "name should not be blank", groups = OnCreate.class)
+    @Pattern(message = "{activity.name.pattern}", regexp = "^[\\sa-zA-Z0-9/.-]{8,45}$")
+    @NotNull(message = "{activity.name.notNull}", groups = OnCreate.class)
     String name;
 
-    @EnumValidator(name = "status", enumClass = ActivityStatus.class)
-    @NotNull(message = "status should not be null", groups = OnCreate.class)
+    @EnumValidator(name = "{activity.name.status.name}", enumClass = ActivityStatus.class)
+    @NotNull(message = "{activity.status.notNull}", groups = OnCreate.class)
     String status;
 
     int userCount;
 
-    @Pattern(message = "activity description is not valid(^.{0,255}$)", regexp = "^.{0,255}$")
+    @Pattern(message = "{activity.description.pattern}", regexp = "^.{0,255}$")
     String description;
 
 }

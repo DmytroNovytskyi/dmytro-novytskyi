@@ -10,13 +10,13 @@ public class TranslationDto {
 
     int id;
 
-    @Pattern(message = "lang is not valid(^[a-z]{2}$)", regexp = "^[a-z]{2}$")
-    @NotNull(message = "lang should not be null")
+    @Pattern(message = "{translation.lang.pattern}", regexp = "^[a-z]{2}$")
+    @NotNull(message = "{translation.lang.notNull}")
     String lang;
 
-    @Pattern(message = "translation is not valid((^[\\sa-zA-Z0-9/.-]{8,45}$)|(^[\\sА-ЩЬЮЯҐЄІЇа-щьюяґєії0-9/.-]{8,45}$))",
+    @Pattern(message = "{translation.name.pattern}",
             regexp = "(^[\\sa-zA-Z0-9/.-]{8,45}$)|(^[\\sА-ЩЬЮЯҐЄІЇа-щьюяґєії0-9/.-]{8,45}$)")
-    @NotNull(message = "translation should not be null")
+    @NotNull(message = "{translation.name.notNull}")
     String name;
 
 }

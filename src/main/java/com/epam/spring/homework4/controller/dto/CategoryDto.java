@@ -13,11 +13,11 @@ public class CategoryDto {
 
     int id;
 
-    @EnumValidator(name = "status", enumClass = CategoryStatus.class)
-    @NotNull(message = "status should not be null", groups = OnCreate.class)
+    @EnumValidator(name = "{category.status.name}", enumClass = CategoryStatus.class)
+    @NotNull(message = "{category.status.notNull}", groups = OnCreate.class)
     String status;
 
-    @NotNull(message = "translations should not be null", groups = OnCreate.class)
+    @NotNull(message = "{category.translations.notNull}", groups = OnCreate.class)
     Set<TranslationDto> translations;
 
 }

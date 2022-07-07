@@ -18,33 +18,34 @@ public class UserDto {
 
     int id;
 
-    @Pattern(message = "username is not valid(^(?=[a-zA-Z0-9._]{8,45}$)(?!.*[_.]{2})[^_.].*[^_.]$)",
+    @Pattern(message = "{user.username.pattern}",
             regexp = "^(?=[a-zA-Z0-9._]{8,45}$)(?!.*[_.]{2})[^_.].*[^_.]$")
-    @NotNull(message = "username should not be null", groups = OnCreate.class)
-    @Null(message = "username should be null", groups = OnUpdate.class)
+    @NotNull(message = "{user.username.notNull}", groups = OnCreate.class)
+    @Null(message = "{user.username.null}", groups = OnUpdate.class)
     String username;
 
-    @NotNull(message = "role should not be null", groups = OnCreate.class)
-    @Null(message = "role should be null", groups = OnUpdate.class)
+    @EnumValidator(name = "{user.role.name}", enumClass = Role.class)
+    @NotNull(message = "{user.role.notNull}", groups = OnCreate.class)
+    @Null(message = "{user.role.null}", groups = OnUpdate.class)
     Role role;
 
-    @Pattern(message = "email is not valid(^(?=[a-zA-Z0-9._@%-]{6,255}$)[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$)",
+    @Pattern(message = "{user.email.pattern}",
             regexp = "^(?=[a-zA-Z0-9._@%-]{6,255}$)[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$")
-    @NotNull(message = "email should not be null", groups = OnCreate.class)
+    @NotNull(message = "{user.email.notNull}", groups = OnCreate.class)
     String email;
 
-    @EnumValidator(name = "status", enumClass = UserStatus.class)
-    @NotNull(message = "status should not be null", groups = OnCreate.class)
+    @EnumValidator(name = "{user.status.name}", enumClass = UserStatus.class)
+    @NotNull(message = "{user.status.notNull}", groups = OnCreate.class)
     String status;
 
-    @Pattern(message = "password is not valid(^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,32}$)",
+    @Pattern(message = "{user.password.pattern}",
             regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,32}$")
-    @NotNull(message = "password should not be null", groups = OnCreate.class)
+    @NotNull(message = "{user.password.notNull}", groups = OnCreate.class)
     String password;
 
-    @Pattern(message = "password is not valid(^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,32}$)",
+    @Pattern(message = "{user.repeatPassword.pattern}",
             regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,32}$")
-    @NotNull(message = "password should not be null", groups = OnCreate.class)
+    @NotNull(message = "{user.repeatPassword.notNull}", groups = OnCreate.class)
     String repeatPassword;
 
 }
