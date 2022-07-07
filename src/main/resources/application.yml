@@ -6,12 +6,6 @@ management:
   endpoint:
     health:
       show-details: always
-  info:
-    java:
-      enabled: true
-    env:
-      enabled: true
-
 info:
   application:
     name: Spring Timekeeper Application
