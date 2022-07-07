@@ -1,4 +1,4 @@
-package com.epam.spring.homework4.controller.api.config;
+package com.epam.spring.homework4.controller.dto.validation.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
