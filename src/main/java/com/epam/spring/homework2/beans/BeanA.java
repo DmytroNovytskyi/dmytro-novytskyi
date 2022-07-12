@@ -14,4 +14,5 @@ public class BeanA extends BeanMaster implements InitializingBean, DisposableBea
     public void afterPropertiesSet() {
         System.out.println("BeanA -> afterPropertiesSet by InitializingBean");
     }
+
 }

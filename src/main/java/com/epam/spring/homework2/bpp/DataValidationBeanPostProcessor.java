@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataValidationBeanPostProcessor implements BeanPostProcessor {
+
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof BeanMaster checkedBean) {
@@ -19,4 +20,5 @@ public class DataValidationBeanPostProcessor implements BeanPostProcessor {
         }
         return bean;
     }
+
 }

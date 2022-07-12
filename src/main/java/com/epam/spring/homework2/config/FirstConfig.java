@@ -8,39 +8,39 @@ import org.springframework.context.annotation.*;
 @Configuration
 @PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = {"com.epam.spring.homework2.bfpp",
-                "com.epam.spring.homework2.bpp"})
+        "com.epam.spring.homework2.bpp"})
 public class FirstConfig {
 
     @Bean
-    public BeanA beanA(){
+    public BeanA beanA() {
         return new BeanA();
     }
 
     @Bean(initMethod = "initCheck", destroyMethod = "destroyCheck")
     @DependsOn("beanD")
-    public BeanB beanB(@Value("${bean-b.name}") String name, @Value("${bean-b.value}") int value){
+    public BeanB beanB(@Value("${bean-b.name}") String name, @Value("${bean-b.value}") int value) {
         return new BeanB(name, value);
     }
 
     @Bean(initMethod = "initCheck", destroyMethod = "destroyCheck")
     @DependsOn({"beanB", "beanD"})
-    public BeanC beanC(@Value("${bean-c.name}") String name, @Value("${bean-c.value}") int value){
+    public BeanC beanC(@Value("${bean-c.name}") String name, @Value("${bean-c.value}") int value) {
         return new BeanC(name, value);
     }
 
     @Bean(initMethod = "initCheck", destroyMethod = "destroyCheck")
-    public BeanD beanD(@Value("${bean-d.name}") String name, @Value("${bean-d.value}") int value){
+    public BeanD beanD(@Value("${bean-d.name}") String name, @Value("${bean-d.value}") int value) {
         return new BeanD(name, value);
     }
 
     @Bean
-    public BeanE beanE(){
+    public BeanE beanE() {
         return new BeanE();
     }
 
     @Bean
     @Lazy
-    public BeanF beanF(){
+    public BeanF beanF() {
         return new BeanF();
     }
 
