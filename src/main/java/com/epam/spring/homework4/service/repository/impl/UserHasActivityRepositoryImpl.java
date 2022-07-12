@@ -74,4 +74,5 @@ public class UserHasActivityRepositoryImpl implements UserHasActivityRepository 
         userHasActivities.removeIf(u -> u.getId() == id);
         log.info("successfully deleted userHasActivity with id:{}", id);
     }
+
 }

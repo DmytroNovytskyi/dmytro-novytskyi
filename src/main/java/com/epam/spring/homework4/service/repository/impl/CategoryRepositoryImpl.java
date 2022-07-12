@@ -67,4 +67,5 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         categories.removeIf(c -> c.getId() == id);
         log.info("successfully deleted category with id:{}", id);
     }
+
 }

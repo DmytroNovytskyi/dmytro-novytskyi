@@ -69,4 +69,5 @@ public class ActivityRepositoryImpl implements ActivityRepository {
         activities.removeIf(a -> a.getId() == id);
         log.info("successfully deleted activity with id:{}", id);
     }
+
 }

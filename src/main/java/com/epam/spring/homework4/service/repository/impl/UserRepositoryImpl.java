@@ -70,4 +70,5 @@ public class UserRepositoryImpl implements UserRepository {
         users.removeIf(u -> u.getId() == id);
         log.info("successfully deleted user with id:{}", id);
     }
+
 }
