@@ -20,7 +20,7 @@ public interface UserHasActivityMapper {
     UserHasActivity mapUserHasActivity(UserHasActivityDto userHasActivityDto);
 
     @AfterMapping
-    default void calculateAndSetTimeSpent(@MappingTarget UserHasActivityDto userHasActivityDto){
+    default void calculateAndSetTimeSpent(@MappingTarget UserHasActivityDto userHasActivityDto) {
         Timestamp start = userHasActivityDto.getStartTime();
         Timestamp end = userHasActivityDto.getEndTime();
         if (start != null && end != null) {

@@ -19,27 +19,27 @@ public class CategoryController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/category")
-    public List<CategoryDto> getAllCategories(){
+    public List<CategoryDto> getAllCategories() {
         log.info("accepted request to get all categories");
         return categoryService.getAll();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/category")
-    public CategoryDto createCategory(@RequestBody CategoryDto category){
+    public CategoryDto createCategory(@RequestBody CategoryDto category) {
         log.info("accepted request to create category with name:{}", category.getTranslations());
         return categoryService.create(category);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/category")
-    public CategoryDto updateCategory(@RequestBody CategoryDto category){
+    public CategoryDto updateCategory(@RequestBody CategoryDto category) {
         log.info("accepted request to update category with id:{}", category.getId());
         return categoryService.update(category);
     }
 
     @DeleteMapping("/category/{categoryId}")
-    public ResponseEntity<Void> deleteCategory(@PathVariable int categoryId){
+    public ResponseEntity<Void> deleteCategory(@PathVariable int categoryId) {
         log.info("accepted request to delete category with id:{}", categoryId);
         categoryService.delete(categoryId);
         return ResponseEntity.noContent().build();

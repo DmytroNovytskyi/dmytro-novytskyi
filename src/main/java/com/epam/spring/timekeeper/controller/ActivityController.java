@@ -19,27 +19,27 @@ public class ActivityController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/activity")
-    public List<ActivityDto> getAllActivities(){
+    public List<ActivityDto> getAllActivities() {
         log.info("accepted request to get all activities");
         return activityService.getAll();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/activity")
-    public ActivityDto createActivity(@RequestBody ActivityDto activity){
+    public ActivityDto createActivity(@RequestBody ActivityDto activity) {
         log.info("accepted request to create activity with name:{}", activity.getName());
         return activityService.create(activity);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/activity")
-    public ActivityDto updateActivity(@RequestBody ActivityDto activity){
+    public ActivityDto updateActivity(@RequestBody ActivityDto activity) {
         log.info("accepted request to update activity with id:{}", activity.getId());
         return activityService.update(activity);
     }
 
     @DeleteMapping("/activity/{activityId}")
-    public ResponseEntity<Void> deleteActivity(@PathVariable int activityId){
+    public ResponseEntity<Void> deleteActivity(@PathVariable int activityId) {
         log.info("accepted request to delete activity with id:{}", activityId);
         activityService.delete(activityId);
         return ResponseEntity.noContent().build();

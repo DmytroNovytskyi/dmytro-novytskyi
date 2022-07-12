@@ -1,15 +1,13 @@
 package com.epam.spring.timekeeper.controller.dto;
 
-import com.epam.spring.timekeeper.service.model.enums.UserHasActivityStatus;
 import com.epam.spring.timekeeper.service.model.Activity;
 import com.epam.spring.timekeeper.service.model.User;
-import lombok.Builder;
+import com.epam.spring.timekeeper.service.model.enums.UserHasActivityStatus;
 import lombok.Data;
 
 import java.sql.Timestamp;
 
 @Data
-@Builder
 public class UserHasActivityDto {
 
     int id;

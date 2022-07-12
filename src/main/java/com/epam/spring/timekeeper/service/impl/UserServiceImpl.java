@@ -1,7 +1,7 @@
 package com.epam.spring.timekeeper.service.impl;
 
-import com.epam.spring.timekeeper.service.UserService;
 import com.epam.spring.timekeeper.controller.dto.UserDto;
+import com.epam.spring.timekeeper.service.UserService;
 import com.epam.spring.timekeeper.service.exception.NotFoundException;
 import com.epam.spring.timekeeper.service.mapper.UserMapper;
 import com.epam.spring.timekeeper.service.model.User;
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto update(UserDto user) {
         log.info("updating user with id:{}", user.getId());
-        if(userRepository.findById(user.getId()) == null){
+        if (userRepository.findById(user.getId()) == null) {
             throw new NotFoundException("No user with id=" + user.getId() + " was found to update.");
         }
         User updated = userRepository.update(UserMapper.INSTANCE.mapUser(user));
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(int userId) {
         log.info("deleting user with id:{}", userId);
-        if(userRepository.findById(userId) == null){
+        if (userRepository.findById(userId) == null) {
             throw new NotFoundException("No user with id=" + userId + " was found to delete.");
         }
         userRepository.deleteById(userId);

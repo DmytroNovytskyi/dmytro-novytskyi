@@ -15,8 +15,8 @@ import java.util.Optional;
 @Slf4j
 public class CategoryRepositoryImpl implements CategoryRepository {
 
-    private int id;
     private final List<Category> categories = new ArrayList<>();
+    private int id;
 
     @Override
     public Category create(Category entity) {
@@ -39,7 +39,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
                 .filter(c -> c.getId() == id)
                 .findFirst()
                 .orElse(null);
-        if(category != null){
+        if (category != null) {
             log.info("found category with id:{}", category.getId());
         } else {
             log.info("could not find category with id:{}", id);
@@ -53,7 +53,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         Optional<Category> categoryOptional = categories.stream()
                 .filter(c -> c.getId() == id)
                 .findFirst();
-        if(categoryOptional.isPresent()){
+        if (categoryOptional.isPresent()) {
             category = categoryOptional.get();
             category.setStatus(entity.getStatus());
             category.setTranslations(entity.getTranslations());
@@ -67,4 +67,5 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         categories.removeIf(c -> c.getId() == id);
         log.info("successfully deleted category with id:{}", id);
     }
+
 }

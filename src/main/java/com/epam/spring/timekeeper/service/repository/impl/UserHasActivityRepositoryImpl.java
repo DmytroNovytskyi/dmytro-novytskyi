@@ -17,9 +17,8 @@ import java.util.Optional;
 @Slf4j
 public class UserHasActivityRepositoryImpl implements UserHasActivityRepository {
 
-    private int id;
     private final List<UserHasActivity> userHasActivities = new ArrayList<>();
-
+    private int id;
 
     @Override
     public UserHasActivity create(UserHasActivity entity) {
@@ -75,4 +74,5 @@ public class UserHasActivityRepositoryImpl implements UserHasActivityRepository 
         userHasActivities.removeIf(u -> u.getId() == id);
         log.info("successfully deleted userHasActivity with id:{}", id);
     }
+
 }

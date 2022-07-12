@@ -15,8 +15,8 @@ import java.util.Optional;
 @Slf4j
 public class ActivityRepositoryImpl implements ActivityRepository {
 
-    private int id;
     private final List<Activity> activities = new ArrayList<>();
+    private int id;
 
     @Override
     public Activity create(Activity entity) {
@@ -39,7 +39,7 @@ public class ActivityRepositoryImpl implements ActivityRepository {
                 .filter(a -> a.getId() == id)
                 .findFirst()
                 .orElse(null);
-        if(activity != null){
+        if (activity != null) {
             log.info("found activity with id:{}", activity.getId());
         } else {
             log.info("could not find activity with id:{}", id);
@@ -53,7 +53,7 @@ public class ActivityRepositoryImpl implements ActivityRepository {
         Optional<Activity> activityOptional = activities.stream()
                 .filter(a -> a.getId() == id)
                 .findFirst();
-        if(activityOptional.isPresent()) {
+        if (activityOptional.isPresent()) {
             activity = activityOptional.get();
             activity.setCategory(entity.getCategory());
             activity.setName(entity.getName());
@@ -69,4 +69,5 @@ public class ActivityRepositoryImpl implements ActivityRepository {
         activities.removeIf(a -> a.getId() == id);
         log.info("successfully deleted activity with id:{}", id);
     }
+
 }

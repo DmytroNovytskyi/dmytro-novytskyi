@@ -19,14 +19,14 @@ public class UserHasActivityController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/user-has-activity")
-    public List<UserHasActivityDto> getAllUserHasActivities(){
+    public List<UserHasActivityDto> getAllUserHasActivities() {
         log.info("accepted request to get all userHasActivities");
         return userHasActivityService.getAll();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/user-has-activity")
-    public UserHasActivityDto requestActivity(@RequestBody UserHasActivityDto userHasActivity){
+    public UserHasActivityDto requestActivity(@RequestBody UserHasActivityDto userHasActivity) {
         log.info("accepted request to request activity for user:{} and activity:{}",
                 userHasActivity.getUser().getUsername(),
                 userHasActivity.getActivity().getName());
@@ -35,13 +35,13 @@ public class UserHasActivityController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/user-has-activity")
-    public UserHasActivityDto updateUserHasActivity(@RequestBody UserHasActivityDto userHasActivity){
+    public UserHasActivityDto updateUserHasActivity(@RequestBody UserHasActivityDto userHasActivity) {
         log.info("accepted request to update userHasActivity with id:{}", userHasActivity.getId());
         return userHasActivityService.update(userHasActivity);
     }
 
     @DeleteMapping("/user-has-activity/{userHasActivityId}")
-    public ResponseEntity<Void> deleteUserHasActivity(@PathVariable int userHasActivityId){
+    public ResponseEntity<Void> deleteUserHasActivity(@PathVariable int userHasActivityId) {
         log.info("accepted request to delete userHasActivity with id:{}", userHasActivityId);
         userHasActivityService.delete(userHasActivityId);
         return ResponseEntity.noContent().build();

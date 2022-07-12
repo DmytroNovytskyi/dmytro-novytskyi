@@ -42,7 +42,7 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public ActivityDto update(ActivityDto activity) {
         log.info("updating activity with id:{}", activity.getId());
-        if(activityRepository.findById(activity.getId()) == null){
+        if (activityRepository.findById(activity.getId()) == null) {
             throw new NotFoundException("No activity with id=" + activity.getId() + " was found to update.");
         }
         Activity updated = activityRepository.update(ActivityMapper.INSTANCE.mapActivity(activity));
@@ -52,13 +52,13 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public void delete(int activityId) {
         log.info("deleting activity with id:{}", activityId);
-        if(activityRepository.findById(activityId) == null){
+        if (activityRepository.findById(activityId) == null) {
             throw new NotFoundException("No activity with id=" + activityId + " was found to delete.");
         }
         activityRepository.deleteById(activityId);
     }
 
-    private ActivityDto processActivity(Activity activity){
+    private ActivityDto processActivity(Activity activity) {
         List<UserHasActivity> userHasActivities = userHasActivityRepository.findAll();
         return ActivityMapper.INSTANCE.mapActivityDto(activity, userHasActivities);
     }

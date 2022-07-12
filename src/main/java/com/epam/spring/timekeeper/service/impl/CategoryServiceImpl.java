@@ -1,8 +1,8 @@
 package com.epam.spring.timekeeper.service.impl;
 
 
-import com.epam.spring.timekeeper.service.CategoryService;
 import com.epam.spring.timekeeper.controller.dto.CategoryDto;
+import com.epam.spring.timekeeper.service.CategoryService;
 import com.epam.spring.timekeeper.service.exception.NotFoundException;
 import com.epam.spring.timekeeper.service.mapper.CategoryMapper;
 import com.epam.spring.timekeeper.service.model.Category;
@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto update(CategoryDto category) {
         log.info("updating category with id:{}", category.getId());
-        if(categoryRepository.findById(category.getId()) == null){
+        if (categoryRepository.findById(category.getId()) == null) {
             throw new NotFoundException("No category with id=" + category.getId() + " was found to update.");
         }
         Category entity = CategoryMapper.INSTANCE.mapCategory(category);
@@ -50,7 +50,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void delete(int categoryId) {
         log.info("deleting category with id:{}", categoryId);
-        if(categoryRepository.findById(categoryId) == null){
+        if (categoryRepository.findById(categoryId) == null) {
             throw new NotFoundException("No category with id=" + categoryId + " was found to delete.");
         }
         categoryRepository.deleteById(categoryId);

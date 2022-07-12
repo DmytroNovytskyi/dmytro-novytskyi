@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Data
 @Builder
-public class Category{
+public class Category {
 
     int id;
     CategoryStatus status;

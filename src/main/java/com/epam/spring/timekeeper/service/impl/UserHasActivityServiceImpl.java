@@ -41,7 +41,7 @@ public class UserHasActivityServiceImpl implements UserHasActivityService {
     @Override
     public UserHasActivityDto update(UserHasActivityDto userHasActivity) {
         log.info("updating userHasActivity with id:{}", userHasActivity.getId());
-        if(userHasActivityRepository.findById(userHasActivity.getId()) == null){
+        if (userHasActivityRepository.findById(userHasActivity.getId()) == null) {
             throw new NotFoundException("No userHasActivity with id=" + userHasActivity.getId() + " was found to update.");
         }
         UserHasActivity entity = UserHasActivityMapper.INSTANCE.mapUserHasActivity(userHasActivity);
@@ -51,7 +51,7 @@ public class UserHasActivityServiceImpl implements UserHasActivityService {
     @Override
     public void delete(int userHasActivityId) {
         log.info("deleting userHasActivity with id:{}", userHasActivityId);
-        if(userHasActivityRepository.findById(userHasActivityId) == null){
+        if (userHasActivityRepository.findById(userHasActivityId) == null) {
             throw new NotFoundException("No userHasActivity with id=" + userHasActivityId + " was found to delete.");
         }
         userHasActivityRepository.deleteById(userHasActivityId);
