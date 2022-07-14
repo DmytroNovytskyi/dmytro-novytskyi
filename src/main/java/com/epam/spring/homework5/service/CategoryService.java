@@ -1,12 +1,11 @@
 package com.epam.spring.homework5.service;
 
 import com.epam.spring.homework5.controller.dto.CategoryDto;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface CategoryService {
 
-    List<CategoryDto> getAll();
+    Page<CategoryDto> getAll(int page, int size, String sortBy, String order);
 
     CategoryDto create(CategoryDto category);
 

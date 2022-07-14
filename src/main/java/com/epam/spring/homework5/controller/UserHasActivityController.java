@@ -5,10 +5,9 @@ import com.epam.spring.homework5.controller.dto.UserHasActivityDto;
 import com.epam.spring.homework5.service.UserHasActivityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,9 +17,9 @@ public class UserHasActivityController implements UserHasActivityApi {
     private final UserHasActivityService userHasActivityService;
 
     @Override
-    public List<UserHasActivityDto> getAllUserHasActivities() {
-        log.info("accepted request to get all userHasActivities");
-        return userHasActivityService.getAll();
+    public Page<UserHasActivityDto> getSortedPagedUserHasActivities(int page, int size, String sortBy, String order) {
+        log.info("accepted request to get userHasActivities");
+        return userHasActivityService.getAll(page, size, sortBy, order);
     }
 
     @Override

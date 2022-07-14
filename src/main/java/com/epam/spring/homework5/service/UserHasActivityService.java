@@ -1,12 +1,11 @@
 package com.epam.spring.homework5.service;
 
 import com.epam.spring.homework5.controller.dto.UserHasActivityDto;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface UserHasActivityService {
 
-    List<UserHasActivityDto> getAll();
+    Page<UserHasActivityDto> getAll(int page, int size, String sortBy, String order);
 
     UserHasActivityDto request(UserHasActivityDto userHasActivity);
 

@@ -5,10 +5,9 @@ import com.epam.spring.homework5.controller.dto.CategoryDto;
 import com.epam.spring.homework5.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,9 +17,9 @@ public class CategoryController implements CategoryApi {
     private final CategoryService categoryService;
 
     @Override
-    public List<CategoryDto> getAllCategories() {
-        log.info("accepted request to get all categories");
-        return categoryService.getAll();
+    public Page<CategoryDto> getSortedPagedCategories(int page, int size, String sortBy, String order) {
+        log.info("accepted request to get categories");
+        return categoryService.getAll(page, size, sortBy, order);
     }
 
     @Override

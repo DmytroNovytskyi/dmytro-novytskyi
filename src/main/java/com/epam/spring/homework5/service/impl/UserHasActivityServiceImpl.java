@@ -11,13 +11,15 @@ import com.epam.spring.homework5.service.model.enums.UserHasActivityStatus;
 import com.epam.spring.homework5.service.repository.UserHasActivityRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 
 import static com.epam.spring.homework5.service.model.enums.UserHasActivityStatus.*;
@@ -30,12 +32,15 @@ public class UserHasActivityServiceImpl implements UserHasActivityService {
     private final UserHasActivityRepository userHasActivityRepository;
 
     @Override
-    public List<UserHasActivityDto> getAll() {
+    public Page<UserHasActivityDto> getAll(int page, int size, String sortBy, String order) {
         log.info("reading all userHasActivities");
-        return userHasActivityRepository.findAll().stream()
-                .map(UserHasActivityMapper.INSTANCE::mapUserHasActivityDto)
-                .sorted(Comparator.comparing(UserHasActivityDto::getCreationDate))
-                .toList();
+        Pageable pageable = PageRequest.of(page, size,
+                order.equals("desc") ? Sort.by(sortBy).descending()
+                        : Sort.by(sortBy).ascending());
+        Page<UserHasActivityDto> userHasActivities = userHasActivityRepository.findAll(pageable)
+                .map(UserHasActivityMapper.INSTANCE::mapUserHasActivityDto);
+        log.info("userHasActivities were successfully read");
+        return userHasActivities;
     }
 
     @Override

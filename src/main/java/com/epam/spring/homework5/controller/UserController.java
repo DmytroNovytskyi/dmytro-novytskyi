@@ -5,10 +5,9 @@ import com.epam.spring.homework5.controller.dto.UserDto;
 import com.epam.spring.homework5.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,9 +17,9 @@ public class UserController implements UserApi {
     private final UserService userService;
 
     @Override
-    public List<UserDto> getAllUsers() {
-        log.info("accepted request to get all users");
-        return userService.getAll();
+    public Page<UserDto> getSortedPagedUsers(int page, int size, String sortBy, String order) {
+        log.info("accepted request to get users");
+        return userService.getAll(page, size, sortBy, order);
     }
 
     @Override

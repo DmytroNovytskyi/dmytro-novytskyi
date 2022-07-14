@@ -9,11 +9,13 @@ import com.epam.spring.homework5.service.model.User;
 import com.epam.spring.homework5.service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,13 +26,14 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public List<UserDto> getAll() {
-        log.info("reading all users");
-        List<UserDto> users = userRepository.findAll().stream()
-                .map(UserMapper.INSTANCE::mapUserDto)
-                .sorted(Comparator.comparing(UserDto::getUsername))
-                .toList();
-        log.info("all users were successfully read");
+    public Page<UserDto> getAll(int page, int size, String sortBy, String order) {
+        log.info("reading users");
+        Pageable pageable = PageRequest.of(page, size,
+                order.equals("desc") ? Sort.by(sortBy).descending()
+                        : Sort.by(sortBy).ascending());
+        Page<UserDto> users = userRepository.findAll(pageable)
+                .map(UserMapper.INSTANCE::mapUserDto);
+        log.info("users were successfully read");
         return users;
     }
 

@@ -5,10 +5,9 @@ import com.epam.spring.homework5.controller.dto.ActivityDto;
 import com.epam.spring.homework5.service.ActivityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,9 +17,9 @@ public class ActivityController implements ActivityApi {
     private final ActivityService activityService;
 
     @Override
-    public List<ActivityDto> getAllActivities() {
-        log.info("accepted request to get all activities");
-        return activityService.getAll();
+    public Page<ActivityDto> getSortedPagedActivities(int page, int size, String sortBy, String order) {
+        log.info("accepted request to get activities");
+        return activityService.getAll(page, size, sortBy, order);
     }
 
     @Override

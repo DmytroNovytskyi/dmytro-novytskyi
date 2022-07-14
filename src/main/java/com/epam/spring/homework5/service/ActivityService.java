@@ -1,12 +1,11 @@
 package com.epam.spring.homework5.service;
 
 import com.epam.spring.homework5.controller.dto.ActivityDto;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface ActivityService {
 
-    List<ActivityDto> getAll();
+    Page<ActivityDto> getAll(int page, int size, String sortBy, String order);
 
     ActivityDto create(ActivityDto activity);
 

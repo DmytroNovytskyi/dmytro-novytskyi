@@ -10,10 +10,13 @@ import com.epam.spring.homework5.service.model.Translation;
 import com.epam.spring.homework5.service.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,13 +28,14 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
     @Override
-    public List<CategoryDto> getAll() {
-        log.info("reading all categories");
-        List<CategoryDto> categories = categoryRepository.findAll().stream()
-                .map(CategoryMapper.INSTANCE::mapCategoryDto)
-                .sorted(Comparator.comparing(CategoryDto::getId))
-                .toList();
-        log.info("all categories were successfully read");
+    public Page<CategoryDto> getAll(int page, int size, String sortBy, String order) {
+        log.info("reading categories");
+        Pageable pageable = PageRequest.of(page, size,
+                order.equals("desc") ? Sort.by(sortBy).descending()
+                        : Sort.by(sortBy).ascending());
+        Page<CategoryDto> categories = categoryRepository.findAll(pageable)
+                .map(CategoryMapper.INSTANCE::mapCategoryDto);
+        log.info("categories were successfully read");
         return categories;
     }
 

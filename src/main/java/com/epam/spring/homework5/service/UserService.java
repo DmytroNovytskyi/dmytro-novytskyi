@@ -1,12 +1,11 @@
 package com.epam.spring.homework5.service;
 
 import com.epam.spring.homework5.controller.dto.UserDto;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface UserService {
 
-    List<UserDto> getAll();
+    Page<UserDto> getAll(int page, int size, String sortBy, String order);
 
     UserDto create(UserDto user);
 
