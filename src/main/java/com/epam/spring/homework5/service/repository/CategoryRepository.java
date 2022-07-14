@@ -1,19 +1,17 @@
 package com.epam.spring.homework5.service.repository;
 
 import com.epam.spring.homework5.service.model.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
-public interface CategoryRepository {
+    boolean existsById(Integer id);
 
-    Category create(Category entity);
+    @Query("select case when count(t)> 0 then true else false end from Translation t where t.name = :name")
+    boolean existsTranslation(@Param("name") String name);
 
-    List<Category> findAll();
-
-    Category findById(int id);
-
-    Category update(Category entity);
-
-    void deleteById(int id);
+    void deleteById(Integer id);
 
 }

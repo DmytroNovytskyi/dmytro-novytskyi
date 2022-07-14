@@ -15,7 +15,9 @@ import java.sql.Timestamp;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserHasActivityDto {
 
-    int id;
+    @Null(message = "{userHasActivity.id.null}", groups = OnCreate.class)
+    @NotNull(message = "{userHasActivity.id.notNull}", groups = OnUpdate.class)
+    Integer id;
 
     @NotNull(message = "{userHasActivity.user.notNull}", groups = OnCreate.class)
     @Null(message = "{userHasActivity.user.null}", groups = OnUpdate.class)

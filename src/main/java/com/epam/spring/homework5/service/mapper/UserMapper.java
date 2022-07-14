@@ -16,8 +16,9 @@ public interface UserMapper {
     @Mapping(target = "password", ignore = true)
     UserDto mapUserDto(User user);
 
+    @Mapping(target = "id", defaultValue = "0")
     User mapUser(UserDto userDto);
 
-    void mapPresentFields(@MappingTarget User user, UserDto userDto);
+    void mapPresentFields(@MappingTarget User toUser, User fromUser);
 
 }

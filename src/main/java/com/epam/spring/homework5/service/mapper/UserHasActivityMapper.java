@@ -2,10 +2,7 @@ package com.epam.spring.homework5.service.mapper;
 
 import com.epam.spring.homework5.controller.dto.UserHasActivityDto;
 import com.epam.spring.homework5.service.model.UserHasActivity;
-import org.mapstruct.AfterMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.sql.Timestamp;
@@ -19,10 +16,11 @@ public interface UserHasActivityMapper {
 
     UserHasActivityDto mapUserHasActivityDto(UserHasActivity userHasActivity);
 
+    @Mapping(target = "id", defaultValue = "0")
     UserHasActivity mapUserHasActivity(UserHasActivityDto userHasActivityDto);
 
-    void mapPresentFields(@MappingTarget UserHasActivity userHasActivity,
-                          UserHasActivityDto userHasActivityDto);
+    void mapPresentFields(@MappingTarget UserHasActivity toUserHasActivity,
+                          UserHasActivity fromUserHasActivity);
 
     @AfterMapping
     default void calculateAndSetTimeSpent(@MappingTarget UserHasActivityDto userHasActivityDto) {

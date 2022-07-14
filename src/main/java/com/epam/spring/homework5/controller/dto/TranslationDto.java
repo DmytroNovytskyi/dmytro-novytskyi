@@ -8,8 +8,6 @@ import javax.validation.constraints.Pattern;
 @Data
 public class TranslationDto {
 
-    int id;
-
     @Pattern(message = "{translation.lang.pattern}", regexp = "^[a-z]{2}$")
     @NotNull(message = "{translation.lang.notNull}")
     String lang;

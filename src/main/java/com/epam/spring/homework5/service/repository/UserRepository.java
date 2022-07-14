@@ -1,19 +1,18 @@
 package com.epam.spring.homework5.service.repository;
 
 import com.epam.spring.homework5.service.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+@Repository
+public interface UserRepository extends JpaRepository<User, Integer> {
 
-public interface UserRepository {
+    boolean existsById(Integer id);
 
-    User create(User entity);
+    boolean existsByUsernameOrEmail(String username, String email);
 
-    List<User> findAll();
+    boolean existsByUsernameOrEmailAndIdIsNot(String username, String email, int id);
 
-    User findById(int id);
-
-    User update(User entity);
-
-    void deleteById(int id);
+    void deleteById(Integer id);
 
 }

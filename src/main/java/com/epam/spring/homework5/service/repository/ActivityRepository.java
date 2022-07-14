@@ -1,20 +1,18 @@
 package com.epam.spring.homework5.service.repository;
 
 import com.epam.spring.homework5.service.model.Activity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+@Repository
+public interface ActivityRepository extends JpaRepository<Activity, Integer> {
 
+    boolean existsById(Integer id);
 
-public interface ActivityRepository {
+    boolean existsByName(String name);
 
-    Activity create(Activity entity);
+    boolean existsByNameAndIdIsNot(String name, int id);
 
-    List<Activity> findAll();
-
-    Activity findById(int id);
-
-    Activity update(Activity entity);
-
-    void deleteById(int id);
+    void deleteById(Integer id);
 
 }

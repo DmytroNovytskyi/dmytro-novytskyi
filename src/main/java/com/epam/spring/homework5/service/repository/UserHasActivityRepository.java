@@ -1,19 +1,18 @@
 package com.epam.spring.homework5.service.repository;
 
+import com.epam.spring.homework5.service.model.Activity;
+import com.epam.spring.homework5.service.model.User;
 import com.epam.spring.homework5.service.model.UserHasActivity;
+import com.epam.spring.homework5.service.model.enums.UserHasActivityStatus;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+public interface UserHasActivityRepository extends JpaRepository<UserHasActivity, Integer> {
 
-public interface UserHasActivityRepository {
+    boolean existsByUserAndActivityAndStatus(User user, Activity activity, UserHasActivityStatus status);
 
-    UserHasActivity create(UserHasActivity entity);
+    boolean existsByUserAndActivityAndStatusAndIdIsNot(User user, Activity activity,
+                                                       UserHasActivityStatus status, Integer id);
 
-    List<UserHasActivity> findAll();
-
-    UserHasActivity findById(int id);
-
-    UserHasActivity update(UserHasActivity entity);
-
-    void deleteById(int id);
+    void deleteById(Integer id);
 
 }

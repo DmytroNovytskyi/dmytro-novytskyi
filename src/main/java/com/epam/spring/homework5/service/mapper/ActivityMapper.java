@@ -2,11 +2,11 @@ package com.epam.spring.homework5.service.mapper;
 
 import com.epam.spring.homework5.controller.dto.ActivityDto;
 import com.epam.spring.homework5.service.model.Activity;
-import com.epam.spring.homework5.service.model.UserHasActivity;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
-
-import java.util.List;
 
 @Mapper(uses = CategoryMapper.class,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
@@ -14,18 +14,13 @@ public interface ActivityMapper {
 
     ActivityMapper INSTANCE = Mappers.getMapper(ActivityMapper.class);
 
-    ActivityDto mapActivityDto(Activity activity, @Context List<UserHasActivity> userHasActivities);
+    @Mapping(target = "userCount",
+            expression = "java(activity.getUserHasActivities() == null ? 0 : activity.getUserHasActivities().size())")
+    ActivityDto mapActivityDto(Activity activity);
 
+    @Mapping(target = "id", defaultValue = "0")
     Activity mapActivity(ActivityDto activityDto);
 
-    void mapPresentFields(@MappingTarget Activity activity, ActivityDto activityDto);
-
-    @AfterMapping
-    default void calculateUserCount(@Context List<UserHasActivity> userHasActivities,
-                                    @MappingTarget ActivityDto activityDto) {
-        activityDto.setUserCount((int) userHasActivities.stream()
-                .filter(u -> u.getActivity().getId() == activityDto.getId())
-                .count());
-    }
+    void mapPresentFields(@MappingTarget Activity toActivity, Activity fromActivity);
 
 }

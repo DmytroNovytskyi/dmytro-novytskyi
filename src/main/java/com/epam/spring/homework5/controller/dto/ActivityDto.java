@@ -2,18 +2,22 @@ package com.epam.spring.homework5.controller.dto;
 
 import com.epam.spring.homework5.controller.dto.validation.EnumValidator;
 import com.epam.spring.homework5.controller.dto.validation.group.OnCreate;
+import com.epam.spring.homework5.controller.dto.validation.group.OnUpdate;
 import com.epam.spring.homework5.service.model.enums.ActivityStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Pattern;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ActivityDto {
 
-    int id;
+    @Null(message = "{activity.id.null}", groups = OnCreate.class)
+    @NotNull(message = "{activity.id.notNull}", groups = OnUpdate.class)
+    Integer id;
 
     @NotNull(message = "{activity.category.notNull}", groups = OnCreate.class)
     CategoryDto category;
@@ -26,7 +30,8 @@ public class ActivityDto {
     @NotNull(message = "{activity.status.notNull}", groups = OnCreate.class)
     String status;
 
-    int userCount;
+    @Null(message = "{activity.userCount.null}")
+    Integer userCount;
 
     @Pattern(message = "{activity.description.pattern}", regexp = "^.{0,255}$")
     String description;

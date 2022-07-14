@@ -2,18 +2,19 @@ package com.epam.spring.homework5.service.impl;
 
 import com.epam.spring.homework5.controller.dto.ActivityDto;
 import com.epam.spring.homework5.service.ActivityService;
+import com.epam.spring.homework5.service.exception.ActivityAlreadyExistsException;
 import com.epam.spring.homework5.service.exception.ActivityNotFoundException;
 import com.epam.spring.homework5.service.mapper.ActivityMapper;
 import com.epam.spring.homework5.service.model.Activity;
-import com.epam.spring.homework5.service.model.UserHasActivity;
 import com.epam.spring.homework5.service.repository.ActivityRepository;
-import com.epam.spring.homework5.service.repository.UserHasActivityRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,48 +22,58 @@ import java.util.List;
 public class ActivityServiceImpl implements ActivityService {
 
     private final ActivityRepository activityRepository;
-    private final UserHasActivityRepository userHasActivityRepository;
 
     public List<ActivityDto> getAll() {
         log.info("reading all activities");
-        List<UserHasActivity> userHasActivities = userHasActivityRepository.findAll();
-        return activityRepository.findAll().stream()
-                .map(a -> ActivityMapper.INSTANCE.mapActivityDto(a, userHasActivities))
+        List<ActivityDto> activities = activityRepository.findAll().stream()
+                .map(ActivityMapper.INSTANCE::mapActivityDto)
                 .sorted(Comparator.comparing(ActivityDto::getName))
                 .toList();
+        log.info("all activities were successfully read");
+        return activities;
     }
 
     @Override
+    @Transactional
     public ActivityDto create(ActivityDto activity) {
         log.info("creating activity with name:{}", activity.getName());
-        Activity created = activityRepository.create(ActivityMapper.INSTANCE.mapActivity(activity));
-        return processActivity(created);
+        if (activityRepository.existsByName(activity.getName())) {
+            throw new ActivityAlreadyExistsException();
+        }
+        Activity createdActivity = activityRepository.save(ActivityMapper.INSTANCE.mapActivity(activity));
+        log.info("activity with name:{} was successfully created with id:{}",
+                createdActivity.getName(), createdActivity.getId());
+        return ActivityMapper.INSTANCE.mapActivityDto(createdActivity);
     }
 
     @Override
+    @Transactional
     public ActivityDto update(ActivityDto activity) {
         log.info("updating activity with id:{}", activity.getId());
-        Activity stored = activityRepository.findById(activity.getId());
-        if (stored == null) {
+        Optional<Activity> activityOptional = activityRepository.findById(activity.getId());
+        if (activityOptional.isEmpty()) {
             throw new ActivityNotFoundException();
         }
-        ActivityMapper.INSTANCE.mapPresentFields(stored, activity);
-        Activity updated = activityRepository.update(stored);
-        return processActivity(updated);
+        if (activityRepository.existsByNameAndIdIsNot(activity.getName(), activity.getId())) {
+            throw new ActivityAlreadyExistsException();
+        }
+        Activity persistedActivity = activityOptional.get();
+        ActivityMapper.INSTANCE.mapPresentFields(persistedActivity,
+                ActivityMapper.INSTANCE.mapActivity(activity));
+        Activity updatedActivity = activityRepository.save(persistedActivity);
+        log.info("activity with id:{} was successfully updated", updatedActivity.getId());
+        return ActivityMapper.INSTANCE.mapActivityDto(updatedActivity);
     }
 
     @Override
+    @Transactional
     public void delete(int activityId) {
         log.info("deleting activity with id:{}", activityId);
-        if (activityRepository.findById(activityId) == null) {
+        if (!activityRepository.existsById(activityId)) {
             throw new ActivityNotFoundException();
         }
         activityRepository.deleteById(activityId);
-    }
-
-    private ActivityDto processActivity(Activity activity) {
-        List<UserHasActivity> userHasActivities = userHasActivityRepository.findAll();
-        return ActivityMapper.INSTANCE.mapActivityDto(activity, userHasActivities);
+        log.info("activity with id:{} was successfully deleted", activityId);
     }
 
 }

@@ -16,7 +16,9 @@ import javax.validation.constraints.Pattern;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
 
-    int id;
+    @Null(message = "{user.id.null}", groups = OnCreate.class)
+    @NotNull(message = "{user.id.notNull}", groups = OnUpdate.class)
+    Integer id;
 
     @Pattern(message = "{user.username.pattern}",
             regexp = "^(?=[a-zA-Z0-9._]{8,45}$)(?!.*[_.]{2})[^_.].*[^_.]$")
@@ -27,7 +29,7 @@ public class UserDto {
     @EnumValidator(name = "{user.role.name}", enumClass = Role.class)
     @NotNull(message = "{user.role.notNull}", groups = OnCreate.class)
     @Null(message = "{user.role.null}", groups = OnUpdate.class)
-    Role role;
+    String role;
 
     @Pattern(message = "{user.email.pattern}",
             regexp = "^(?=[a-zA-Z0-9._@%-]{6,255}$)[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$")
