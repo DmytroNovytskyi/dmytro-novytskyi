@@ -30,6 +30,7 @@ public class ActivityServiceImpl implements ActivityService {
     private final ActivityRepository activityRepository;
     private final CategoryRepository categoryRepository;
 
+    @Override
     public Page<ActivityDto> getAll(int page, int size, String sortBy, String order) {
         log.info("reading activities");
         Pageable pageable = PageRequest.of(page, size,
