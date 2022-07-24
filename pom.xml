@@ -87,6 +87,12 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -117,6 +123,26 @@
                             <version>0.2.0</version>
                         </dependency>
                     </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.9.3</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>1.0.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <targetClasses>
+                        <param>com.epam.spring.homework6.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>com.epam.spring.homework6.*</param>
+                    </targetTests>
                 </configuration>
             </plugin>
         </plugins>
