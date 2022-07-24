@@ -13,7 +13,7 @@ public class UserTestData {
     public static final Integer ID = 1;
     public static final String USERNAME = "username";
     public static final String EMAIL = "username@gmail.com";
-    public static final String PASSWORD = "password1!";
+    public static final String PASSWORD = "password1@";
 
     public static List<UserDto> createUserDtoList() {
         List<UserDto> userDtoList = new ArrayList<>();

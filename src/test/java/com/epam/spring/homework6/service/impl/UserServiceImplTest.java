@@ -113,7 +113,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    void givenValidUserDto_whenUpdate_thenReturnUpdatedUSerDto() {
+    void givenValidUserDto_whenUpdate_thenReturnUpdatedUserDto() {
         UserDto userDto = createUserDto();
         userDto.setId(ID);
         User user = createUser();

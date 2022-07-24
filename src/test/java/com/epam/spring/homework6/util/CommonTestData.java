@@ -7,7 +7,7 @@ import java.util.List;
 public class CommonTestData {
 
     public static final int PAGE = 0;
-    public static final int SIZE = 2;
+    public static final int SIZE = 4;
     public static final String SORT_BY = "id";
     public static final String ORDER = "asc";
 

@@ -1,0 +1,28 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  application:
+    name: Spring Timekeeper Application
+    description: Spring application for timekeeping.
+    version: 1.0.0
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:timekeeper
+  jpa:
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
+    show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      platform: h2
+      data-locations: classpath:data-h2.sql
