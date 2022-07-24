@@ -1,6 +1,7 @@
 package com.epam.spring.homework6.util;
 
 import com.epam.spring.homework6.controller.dto.ActivityDto;
+import com.epam.spring.homework6.controller.dto.CategoryDto;
 import com.epam.spring.homework6.service.model.Activity;
 import com.epam.spring.homework6.service.model.Category;
 import com.epam.spring.homework6.service.model.enums.ActivityStatus;
@@ -14,6 +15,28 @@ public class ActivityTestData {
     public static final Integer ID = 1;
     public static final String NAME = "activity";
     public static final String DESCRIPTION = "description";
+
+    public static List<ActivityDto> createActivityDtoList() {
+        List<ActivityDto> activityDtoList = new ArrayList<>();
+        CategoryDto categoryDto = CategoryTestData.createCategoryDto();
+        ActivityDto firstActivityDto = new ActivityDto();
+        firstActivityDto.setId(1);
+        firstActivityDto.setCategory(categoryDto);
+        firstActivityDto.setName("activity1");
+        firstActivityDto.setStatus(ActivityStatus.OPENED.name());
+        firstActivityDto.setDescription("activity1 description");
+        firstActivityDto.setUserCount(0);
+        ActivityDto secondActivityDto = new ActivityDto();
+        secondActivityDto.setId(1);
+        secondActivityDto.setCategory(categoryDto);
+        secondActivityDto.setName("activity2");
+        secondActivityDto.setStatus(ActivityStatus.OPENED.name());
+        secondActivityDto.setDescription("activity2 description");
+        secondActivityDto.setUserCount(0);
+        activityDtoList.add(firstActivityDto);
+        activityDtoList.add(secondActivityDto);
+        return activityDtoList;
+    }
 
     public static List<Activity> createActivityList() {
         List<Activity> activities = new ArrayList<>();

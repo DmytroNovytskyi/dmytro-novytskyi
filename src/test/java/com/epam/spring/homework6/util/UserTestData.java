@@ -15,6 +15,25 @@ public class UserTestData {
     public static final String EMAIL = "username@gmail.com";
     public static final String PASSWORD = "password1!";
 
+    public static List<UserDto> createUserDtoList() {
+        List<UserDto> userDtoList = new ArrayList<>();
+        UserDto firstUserDto = new UserDto();
+        firstUserDto.setId(1);
+        firstUserDto.setUsername("username1");
+        firstUserDto.setEmail("username1@gmail.com");
+        firstUserDto.setStatus(UserStatus.ACTIVE.name());
+        firstUserDto.setRole(Role.ADMIN.name());
+        UserDto secondUserDto = new UserDto();
+        secondUserDto.setId(2);
+        secondUserDto.setUsername("username2");
+        secondUserDto.setEmail("username2@gmail.com");
+        secondUserDto.setStatus(UserStatus.ACTIVE.name());
+        secondUserDto.setRole(Role.WORKER.name());
+        userDtoList.add(firstUserDto);
+        userDtoList.add(secondUserDto);
+        return userDtoList;
+    }
+
     public static List<User> createUserList() {
         List<User> users = new ArrayList<>();
         users.add(User.builder()

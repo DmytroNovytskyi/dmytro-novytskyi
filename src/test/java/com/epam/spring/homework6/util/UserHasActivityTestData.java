@@ -17,6 +17,27 @@ public class UserHasActivityTestData {
 
     public static final Integer ID = 1;
 
+    public static List<UserHasActivityDto> createUserHasActivityDtoList() {
+        List<UserHasActivityDto> userHasActivityDtoList = new ArrayList<>();
+        UserDto userDto = UserTestData.createUserDto();
+        List<ActivityDto> activityDtoList = ActivityTestData.createActivityDtoList();
+        UserHasActivityDto firstUserHasActivityDto = new UserHasActivityDto();
+        firstUserHasActivityDto.setId(1);
+        firstUserHasActivityDto.setUser(userDto);
+        firstUserHasActivityDto.setStatus(UserHasActivityStatus.PENDING_ASSIGN.name());
+        firstUserHasActivityDto.setCreationDate(new Timestamp(LocalDateTime.now().getNano() / 1000));
+        UserHasActivityDto secondUserHasActivityDto = new UserHasActivityDto();
+        secondUserHasActivityDto.setId(2);
+        secondUserHasActivityDto.setUser(userDto);
+        secondUserHasActivityDto.setStatus(UserHasActivityStatus.PENDING_ABORT.name());
+        secondUserHasActivityDto.setCreationDate(new Timestamp(LocalDateTime.now().getNano() / 1000));
+        userHasActivityDtoList.add(firstUserHasActivityDto);
+        userHasActivityDtoList.add(secondUserHasActivityDto);
+        userHasActivityDtoList.get(0).setActivity(activityDtoList.get(0));
+        userHasActivityDtoList.get(1).setActivity(activityDtoList.get(activityDtoList.size() - 1));
+        return userHasActivityDtoList;
+    }
+
     public static List<UserHasActivity> createUserHasActivityList() {
         List<UserHasActivity> userHasActivities = new ArrayList<>();
         User user = UserTestData.createUser();

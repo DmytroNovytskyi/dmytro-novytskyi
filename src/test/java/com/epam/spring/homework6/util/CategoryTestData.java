@@ -16,6 +16,39 @@ public class CategoryTestData {
     public static final String NAME_EN = "category";
     public static final String NAME_UA = "категорія";
 
+    public static List<CategoryDto> createCategoryDtoList() {
+        List<CategoryDto> categoryDtoList = new ArrayList<>();
+        List<TranslationDto> translationDtoListForFirstCategoryDto = new ArrayList<>();
+        List<TranslationDto> translationDtoListForSecondCategoryDto = new ArrayList<>();
+        TranslationDto firstTranslationDto = new TranslationDto();
+        firstTranslationDto.setLang("en");
+        firstTranslationDto.setName("category1");
+        TranslationDto secondTranslationDto = new TranslationDto();
+        secondTranslationDto.setLang("ua");
+        secondTranslationDto.setName("категорія1");
+        TranslationDto thirdTranslationDto = new TranslationDto();
+        thirdTranslationDto.setLang("en");
+        thirdTranslationDto.setName("category2");
+        TranslationDto forthTranslationDto = new TranslationDto();
+        forthTranslationDto.setLang("ua");
+        forthTranslationDto.setName("категорія2");
+        translationDtoListForFirstCategoryDto.add(firstTranslationDto);
+        translationDtoListForFirstCategoryDto.add(secondTranslationDto);
+        translationDtoListForSecondCategoryDto.add(thirdTranslationDto);
+        translationDtoListForSecondCategoryDto.add(forthTranslationDto);
+        CategoryDto firstCategoryDto = new CategoryDto();
+        firstCategoryDto.setId(1);
+        firstCategoryDto.setStatus(CategoryStatus.OPENED.name());
+        firstCategoryDto.setTranslations(translationDtoListForFirstCategoryDto);
+        CategoryDto secondCategoryDto = new CategoryDto();
+        secondCategoryDto.setId(2);
+        secondCategoryDto.setStatus(CategoryStatus.OPENED.name());
+        secondCategoryDto.setTranslations(translationDtoListForSecondCategoryDto);
+        categoryDtoList.add(firstCategoryDto);
+        categoryDtoList.add(secondCategoryDto);
+        return categoryDtoList;
+    }
+
     public static List<Category> createCategoryList() {
         List<Category> categories = new ArrayList<>();
         List<Translation> translationsForFirstCategory = new ArrayList<>();
