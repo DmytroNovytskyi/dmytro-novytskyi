@@ -11,13 +11,13 @@ import java.util.Set;
 @Data
 public class CategoryDto {
 
-    int id;
+    private int id;
 
     @EnumValidator(name = "{category.status.name}", enumClass = CategoryStatus.class)
     @NotNull(message = "{category.status.notNull}", groups = OnCreate.class)
-    String status;
+    private String status;
 
     @NotNull(message = "{category.translations.notNull}", groups = OnCreate.class)
-    Set<TranslationDto> translations;
+    private Set<TranslationDto> translations;
 
 }

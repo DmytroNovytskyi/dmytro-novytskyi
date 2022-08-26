@@ -38,7 +38,7 @@ public class CategoryController implements CategoryApi {
     @Override
     public ResponseEntity<Void> deleteCategory(int categoryId) {
         log.info("accepted request to delete category with id:{}", categoryId);
-        categoryService.delete(categoryId);
+        categoryService.deleteById(categoryId);
         return ResponseEntity.noContent().build();
     }
 

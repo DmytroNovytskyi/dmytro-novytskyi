@@ -50,7 +50,7 @@ public class UserHasActivityServiceImpl implements UserHasActivityService {
     }
 
     @Override
-    public void delete(int userHasActivityId) {
+    public void deleteById(int userHasActivityId) {
         log.info("deleting userHasActivity with id:{}", userHasActivityId);
         if (userHasActivityRepository.findById(userHasActivityId) == null) {
             throw new UserHasActivityNotFoundException();

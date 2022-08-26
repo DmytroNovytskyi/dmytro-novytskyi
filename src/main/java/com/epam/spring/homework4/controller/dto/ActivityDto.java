@@ -13,22 +13,22 @@ import javax.validation.constraints.Pattern;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ActivityDto {
 
-    int id;
+    private int id;
 
     @NotNull(message = "{activity.category.notNull}", groups = OnCreate.class)
-    CategoryDto category;
+    private CategoryDto category;
 
     @Pattern(message = "{activity.name.pattern}", regexp = "^[\\sa-zA-Z0-9/.-]{8,45}$")
     @NotNull(message = "{activity.name.notNull}", groups = OnCreate.class)
-    String name;
+    private String name;
 
     @EnumValidator(name = "{activity.name.status.name}", enumClass = ActivityStatus.class)
     @NotNull(message = "{activity.status.notNull}", groups = OnCreate.class)
-    String status;
+    private String status;
 
-    int userCount;
+    private int userCount;
 
     @Pattern(message = "{activity.description.pattern}", regexp = "^.{0,255}$")
-    String description;
+    private String description;
 
 }

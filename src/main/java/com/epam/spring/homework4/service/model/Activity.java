@@ -8,10 +8,10 @@ import lombok.Data;
 @Builder
 public class Activity {
 
-    int id;
-    Category category;
-    String name;
-    ActivityStatus status;
-    String description;
+    private int id;
+    private Category category;
+    private String name;
+    private ActivityStatus status;
+    private String description;
 
 }

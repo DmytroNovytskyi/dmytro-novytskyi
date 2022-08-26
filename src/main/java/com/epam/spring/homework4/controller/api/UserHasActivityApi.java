@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Api(tags = "UserHasActivity management API")
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/user-has-activity")
 public interface UserHasActivityApi {
 
     @ApiOperation("Get all userHasActivities")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/user-has-activity")
+    @GetMapping
     List<UserHasActivityDto> getAllUserHasActivities();
 
     @ApiImplicitParams(
@@ -31,7 +31,7 @@ public interface UserHasActivityApi {
     )
     @ApiOperation("Create activity request")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/user-has-activity")
+    @PostMapping
     UserHasActivityDto requestActivity(@RequestBody @Validated(OnCreate.class)
                                                UserHasActivityDto userHasActivity);
 
@@ -43,7 +43,7 @@ public interface UserHasActivityApi {
     )
     @ApiOperation("Update userHasActivity")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/user-has-activity")
+    @PutMapping
     UserHasActivityDto updateUserHasActivity(@RequestBody @Validated(OnUpdate.class)
                                                      UserHasActivityDto userHasActivity);
 
@@ -54,7 +54,7 @@ public interface UserHasActivityApi {
                     value = "Id of userHasActivity to be deleted")
     )
     @ApiOperation("Delete userHasActivity")
-    @DeleteMapping("/user-has-activity/{userHasActivityId}")
+    @DeleteMapping("/{userHasActivityId}")
     ResponseEntity<Void> deleteUserHasActivity(@PathVariable int userHasActivityId);
 
 }

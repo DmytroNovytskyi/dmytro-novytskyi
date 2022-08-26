@@ -10,11 +10,11 @@ import lombok.Data;
 @Builder
 public class User {
 
-    int id;
-    String username;
-    Role role;
-    String email;
-    String password;
-    UserStatus status;
+    private int id;
+    private String username;
+    private Role role;
+    private String email;
+    private String password;
+    private UserStatus status;
 
 }

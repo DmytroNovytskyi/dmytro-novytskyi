@@ -15,32 +15,32 @@ import java.sql.Timestamp;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserHasActivityDto {
 
-    int id;
+    private int id;
 
     @NotNull(message = "{userHasActivity.user.notNull}", groups = OnCreate.class)
     @Null(message = "{userHasActivity.user.null}", groups = OnUpdate.class)
-    UserDto user;
+    private UserDto user;
 
     @NotNull(message = "{userHasActivity.activity.notNull}", groups = OnCreate.class)
     @Null(message = "{userHasActivity.activity.null}", groups = OnUpdate.class)
-    ActivityDto activity;
+    private ActivityDto activity;
 
     @EnumValidator(name = "{userHasActivity.status.name}",
             enumClass = UserHasActivityStatus.class)
     @Null(message = "{userHasActivity.status.null}", groups = OnCreate.class)
     @NotNull(message = "{userHasActivity.status.notNull}", groups = OnUpdate.class)
-    String status;
+    private String status;
 
     @Null(message = "{userHasActivity.startTime.null}")
-    Timestamp startTime;
+    private Timestamp startTime;
 
     @Null(message = "{userHasActivity.endTime.null}")
-    Timestamp endTime;
+    private Timestamp endTime;
 
     @Null(message = "{userHasActivity.creationDate.null}")
-    Timestamp creationDate;
+    private Timestamp creationDate;
 
     @Null(message = "{userHasActivity.timeSpent.null}")
-    String timeSpent;
+    private String timeSpent;
 
 }

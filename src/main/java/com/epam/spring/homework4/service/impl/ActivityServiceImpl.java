@@ -52,7 +52,7 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public void delete(int activityId) {
+    public void deleteById(int activityId) {
         log.info("deleting activity with id:{}", activityId);
         if (activityRepository.findById(activityId) == null) {
             throw new ActivityNotFoundException();

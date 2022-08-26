@@ -10,12 +10,12 @@ import java.sql.Timestamp;
 @Builder
 public class UserHasActivity {
 
-    int id;
-    User user;
-    Activity activity;
-    UserHasActivityStatus status;
-    Timestamp startTime;
-    Timestamp endTime;
-    Timestamp creationDate;
+    private int id;
+    private User user;
+    private Activity activity;
+    private UserHasActivityStatus status;
+    private Timestamp startTime;
+    private Timestamp endTime;
+    private Timestamp creationDate;
 
 }

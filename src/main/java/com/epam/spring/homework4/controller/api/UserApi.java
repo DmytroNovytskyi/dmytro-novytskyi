@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Api(tags = "User management API")
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/user")
 public interface UserApi {
 
     @ApiOperation("Get all users")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/user")
+    @GetMapping
     List<UserDto> getAllUsers();
 
     @ApiImplicitParams(
@@ -31,7 +31,7 @@ public interface UserApi {
     )
     @ApiOperation("Create user")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/user")
+    @PostMapping
     UserDto createUser(@RequestBody @Validated(OnCreate.class) UserDto user);
 
     @ApiImplicitParams(
@@ -42,7 +42,7 @@ public interface UserApi {
     )
     @ApiOperation("Update user")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/user")
+    @PutMapping
     UserDto updateUser(@RequestBody @Validated(OnUpdate.class) UserDto user);
 
     @ApiImplicitParams(
@@ -52,7 +52,7 @@ public interface UserApi {
                     value = "Id of user to be deleted")
     )
     @ApiOperation("Delete user")
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/{userId}")
     ResponseEntity<Void> deleteUser(@PathVariable int userId);
 
 }

@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Api(tags = "Activity management API")
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/activity")
 public interface ActivityApi {
 
     @ApiOperation("Get all activities")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/activity")
+    @GetMapping
     List<ActivityDto> getAllActivities();
 
     @ApiImplicitParams(
@@ -31,7 +31,7 @@ public interface ActivityApi {
     )
     @ApiOperation("Create activity")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/activity")
+    @PostMapping
     ActivityDto createActivity(@RequestBody @Validated(OnCreate.class) ActivityDto activity);
 
     @ApiImplicitParams(
@@ -42,7 +42,7 @@ public interface ActivityApi {
     )
     @ApiOperation("Update activity")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/activity")
+    @PutMapping
     ActivityDto updateActivity(@RequestBody @Validated(OnUpdate.class) ActivityDto activity);
 
     @ApiImplicitParams(
@@ -53,7 +53,7 @@ public interface ActivityApi {
     )
     @ApiOperation("Delete activity")
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/activity/{activityId}")
+    @DeleteMapping("/{activityId}")
     ResponseEntity<Void> deleteActivity(@PathVariable int activityId);
 
 }

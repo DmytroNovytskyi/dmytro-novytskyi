@@ -4,13 +4,13 @@ import com.epam.spring.homework4.service.model.User;
 import com.epam.spring.homework4.service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Repository
 @RequiredArgsConstructor
 @Slf4j
 public class UserRepositoryImpl implements UserRepository {

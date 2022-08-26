@@ -40,7 +40,7 @@ public class UserHasActivityController implements UserHasActivityApi {
     @Override
     public ResponseEntity<Void> deleteUserHasActivity(int userHasActivityId) {
         log.info("accepted request to delete userHasActivity with id:{}", userHasActivityId);
-        userHasActivityService.delete(userHasActivityId);
+        userHasActivityService.deleteById(userHasActivityId);
         return ResponseEntity.noContent().build();
     }
 
