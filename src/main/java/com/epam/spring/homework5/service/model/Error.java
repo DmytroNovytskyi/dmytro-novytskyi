@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Error {
 
-    String message;
-    ErrorType errorType;
-    LocalDateTime timeStamp;
+    private String message;
+    private ErrorType errorType;
+    private LocalDateTime timeStamp;
 
 }

@@ -70,7 +70,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional
-    public void delete(int categoryId) {
+    public void deleteById(int categoryId) {
         log.info("deleting category with id:{}", categoryId);
         if (!categoryRepository.existsById(categoryId)) {
             throw new CategoryNotFoundException();

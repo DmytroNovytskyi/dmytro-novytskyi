@@ -17,7 +17,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 @Api(tags = "User management API")
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/user")
 @Validated
 public interface UserApi {
 
@@ -38,7 +38,7 @@ public interface UserApi {
     )
     @ApiOperation("Get page of sorted users")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/user")
+    @GetMapping
     Page<UserDto> getSortedPagedUsers(@RequestParam(defaultValue = "0")
                                       @Min(value = 0, message = "{userApi.getSortedPagedUsers.page.min}")
                                               int page,
@@ -62,7 +62,7 @@ public interface UserApi {
     )
     @ApiOperation("Create user")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/user")
+    @PostMapping
     UserDto createUser(@RequestBody @Validated(OnCreate.class) UserDto user);
 
     @ApiImplicitParams(
@@ -73,7 +73,7 @@ public interface UserApi {
     )
     @ApiOperation("Update user")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/user")
+    @PutMapping
     UserDto updateUser(@RequestBody @Validated(OnUpdate.class) UserDto user);
 
     @ApiImplicitParams(
@@ -83,7 +83,7 @@ public interface UserApi {
                     value = "Id of user to be deleted")
     )
     @ApiOperation("Delete user")
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/{userId}")
     ResponseEntity<Void> deleteUser(@PathVariable int userId);
 
 }

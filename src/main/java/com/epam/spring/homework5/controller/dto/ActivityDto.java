@@ -17,23 +17,23 @@ public class ActivityDto {
 
     @Null(message = "{activity.id.null}", groups = OnCreate.class)
     @NotNull(message = "{activity.id.notNull}", groups = OnUpdate.class)
-    Integer id;
+    private Integer id;
 
     @NotNull(message = "{activity.category.notNull}", groups = OnCreate.class)
-    CategoryDto category;
+    private CategoryDto category;
 
     @Pattern(message = "{activity.name.pattern}", regexp = "^[\\sa-zA-Z0-9/.-]{8,45}$")
     @NotNull(message = "{activity.name.notNull}", groups = OnCreate.class)
-    String name;
+    private String name;
 
     @EnumValidator(name = "{activity.name.status.name}", enumClass = ActivityStatus.class)
     @NotNull(message = "{activity.status.notNull}", groups = OnCreate.class)
-    String status;
+    private String status;
 
     @Null(message = "{activity.userCount.null}")
-    Integer userCount;
+    private Integer userCount;
 
     @Pattern(message = "{activity.description.pattern}", regexp = "^.{0,255}$")
-    String description;
+    private String description;
 
 }

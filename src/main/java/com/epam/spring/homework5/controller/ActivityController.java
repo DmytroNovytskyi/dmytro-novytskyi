@@ -37,7 +37,7 @@ public class ActivityController implements ActivityApi {
     @Override
     public ResponseEntity<Void> deleteActivity(int activityId) {
         log.info("accepted request to delete activity with id:{}", activityId);
-        activityService.delete(activityId);
+        activityService.deleteById(activityId);
         return ResponseEntity.noContent().build();
     }
 

@@ -85,7 +85,7 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     @Transactional
-    public void delete(int activityId) {
+    public void deleteById(int activityId) {
         log.info("deleting activity with id:{}", activityId);
         if (!activityRepository.existsById(activityId)) {
             throw new ActivityNotFoundException();

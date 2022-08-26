@@ -16,14 +16,14 @@ public class CategoryDto {
 
     @Null(message = "{category.id.null}", groups = OnCreate.class)
     @NotNull(message = "{category.id.notNull}", groups = OnUpdate.class)
-    Integer id;
+    private Integer id;
 
     @EnumValidator(name = "{category.status.name}", enumClass = CategoryStatus.class)
     @NotNull(message = "{category.status.notNull}", groups = OnCreate.class)
-    String status;
+    private String status;
 
     @NotNull(message = "{category.translations.notNull}", groups = OnCreate.class)
     @NotEmpty(message = "{category.translations.notEmpty}")
-    List<TranslationDto> translations;
+    private List<TranslationDto> translations;
 
 }

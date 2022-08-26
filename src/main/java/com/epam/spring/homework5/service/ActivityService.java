@@ -11,6 +11,6 @@ public interface ActivityService {
 
     ActivityDto update(ActivityDto activity);
 
-    void delete(int activityId);
+    void deleteById(int activityId);
 
 }

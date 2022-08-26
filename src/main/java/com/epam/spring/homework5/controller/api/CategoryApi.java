@@ -17,7 +17,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 @Api(tags = "Category management API")
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/category")
 @Validated
 public interface CategoryApi {
 
@@ -38,7 +38,7 @@ public interface CategoryApi {
     )
     @ApiOperation("Get page of sorted categories")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/category")
+    @GetMapping
     Page<CategoryDto> getSortedPagedCategories(@RequestParam(defaultValue = "0")
                                                @Min(value = 0, message = "{categoryApi.getSortedPagedCategories.page.min}")
                                                        int page,
@@ -62,7 +62,7 @@ public interface CategoryApi {
     )
     @ApiOperation("Create category")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/category")
+    @PostMapping
     CategoryDto createCategory(@RequestBody @Validated(OnCreate.class) CategoryDto category);
 
     @ApiImplicitParams(
@@ -73,7 +73,7 @@ public interface CategoryApi {
     )
     @ApiOperation("Update category")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/category")
+    @PutMapping
     CategoryDto updateCategory(@RequestBody @Validated(OnUpdate.class) CategoryDto category);
 
     @ApiImplicitParams(
@@ -83,7 +83,7 @@ public interface CategoryApi {
                     value = "Id of category to be deleted")
     )
     @ApiOperation("Delete category")
-    @DeleteMapping("/category/{categoryId}")
+    @DeleteMapping("/{categoryId}")
     ResponseEntity<Void> deleteCategory(@PathVariable int categoryId);
 
 }
