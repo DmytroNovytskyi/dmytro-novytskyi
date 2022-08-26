@@ -8,8 +8,8 @@ import java.util.Set;
 @Data
 public class CategoryDto {
 
-    int id;
-    CategoryStatus status;
-    Set<TranslationDto> translations;
+    private int id;
+    private CategoryStatus status;
+    private Set<TranslationDto> translations;
 
 }

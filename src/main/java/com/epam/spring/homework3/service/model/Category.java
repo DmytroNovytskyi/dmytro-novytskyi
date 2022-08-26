@@ -10,8 +10,8 @@ import java.util.Set;
 @Builder
 public class Category {
 
-    int id;
-    CategoryStatus status;
-    Set<Translation> translations;
+    private int id;
+    private CategoryStatus status;
+    private Set<Translation> translations;
 
 }

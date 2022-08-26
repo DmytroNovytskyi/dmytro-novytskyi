@@ -12,6 +12,6 @@ public interface CategoryService {
 
     CategoryDto update(CategoryDto category);
 
-    void delete(int categoryId);
+    void deleteById(int categoryId);
 
 }

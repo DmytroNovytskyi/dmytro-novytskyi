@@ -8,13 +8,13 @@ import java.sql.Timestamp;
 @Data
 public class UserHasActivityDto {
 
-    int id;
-    UserDto user;
-    ActivityDto activity;
-    UserHasActivityStatus status;
-    Timestamp startTime;
-    Timestamp endTime;
-    Timestamp creationDate;
-    String timeSpent;
+    private int id;
+    private UserDto user;
+    private ActivityDto activity;
+    private UserHasActivityStatus status;
+    private Timestamp startTime;
+    private Timestamp endTime;
+    private Timestamp creationDate;
+    private String timeSpent;
 
 }

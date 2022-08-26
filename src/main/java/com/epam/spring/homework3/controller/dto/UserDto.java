@@ -7,12 +7,12 @@ import lombok.Data;
 @Data
 public class UserDto {
 
-    int id;
-    String username;
-    Role role;
-    String email;
-    UserStatus status;
-    String password;
-    String repeatPassword;
+    private int id;
+    private String username;
+    private Role role;
+    private String email;
+    private UserStatus status;
+    private String password;
+    private String repeatPassword;
 
 }

@@ -48,7 +48,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void delete(int categoryId) {
+    public void deleteById(int categoryId) {
         log.info("deleting category with id:{}", categoryId);
         if (categoryRepository.findById(categoryId) == null) {
             throw new NotFoundException("No category with id=" + categoryId + " was found to delete.");

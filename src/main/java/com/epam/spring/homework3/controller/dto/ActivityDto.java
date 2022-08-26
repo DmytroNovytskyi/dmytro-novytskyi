@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 public class ActivityDto {
 
-    int id;
-    CategoryDto category;
-    String name;
-    ActivityStatus status;
-    int userCount;
-    String description;
+    private int id;
+    private CategoryDto category;
+    private String name;
+    private ActivityStatus status;
+    private int userCount;
+    private String description;
 
 }

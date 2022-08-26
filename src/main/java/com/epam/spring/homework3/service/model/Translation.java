@@ -7,9 +7,9 @@ import lombok.Data;
 @Builder
 public class Translation {
 
-    int id;
-    int categoryId;
-    String lang;
-    String name;
+    private int id;
+    private int categoryId;
+    private String lang;
+    private String name;
 
 }

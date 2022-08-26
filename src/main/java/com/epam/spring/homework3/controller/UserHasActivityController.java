@@ -13,19 +13,20 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/user-has-activity")
 public class UserHasActivityController {
 
     private final UserHasActivityService userHasActivityService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/user-has-activity")
+    @GetMapping
     public List<UserHasActivityDto> getAllUserHasActivities() {
         log.info("accepted request to get all userHasActivities");
         return userHasActivityService.getAll();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/user-has-activity")
+    @PostMapping
     public UserHasActivityDto requestActivity(@RequestBody UserHasActivityDto userHasActivity) {
         log.info("accepted request to request activity for user:{} and activity:{}",
                 userHasActivity.getUser().getUsername(),
@@ -34,16 +35,16 @@ public class UserHasActivityController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/user-has-activity")
+    @PutMapping
     public UserHasActivityDto updateUserHasActivity(@RequestBody UserHasActivityDto userHasActivity) {
         log.info("accepted request to update userHasActivity with id:{}", userHasActivity.getId());
         return userHasActivityService.update(userHasActivity);
     }
 
-    @DeleteMapping("/user-has-activity/{userHasActivityId}")
+    @DeleteMapping("/{userHasActivityId}")
     public ResponseEntity<Void> deleteUserHasActivity(@PathVariable int userHasActivityId) {
         log.info("accepted request to delete userHasActivity with id:{}", userHasActivityId);
-        userHasActivityService.delete(userHasActivityId);
+        userHasActivityService.deleteById(userHasActivityId);
         return ResponseEntity.noContent().build();
     }
 

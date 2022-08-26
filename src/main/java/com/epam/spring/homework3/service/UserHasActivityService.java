@@ -12,6 +12,6 @@ public interface UserHasActivityService {
 
     UserHasActivityDto update(UserHasActivityDto userHasActivity);
 
-    void delete(int userHasActivityId);
+    void deleteById(int userHasActivityId);
 
 }

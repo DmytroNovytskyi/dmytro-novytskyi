@@ -13,35 +13,36 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/activity")
 public class ActivityController {
 
     private final ActivityService activityService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/activity")
+    @GetMapping
     public List<ActivityDto> getAllActivities() {
         log.info("accepted request to get all activities");
         return activityService.getAll();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/activity")
+    @PostMapping
     public ActivityDto createActivity(@RequestBody ActivityDto activity) {
         log.info("accepted request to create activity with name:{}", activity.getName());
         return activityService.create(activity);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/activity")
+    @PutMapping
     public ActivityDto updateActivity(@RequestBody ActivityDto activity) {
         log.info("accepted request to update activity with id:{}", activity.getId());
         return activityService.update(activity);
     }
 
-    @DeleteMapping("/activity/{activityId}")
+    @DeleteMapping("/{activityId}")
     public ResponseEntity<Void> deleteActivity(@PathVariable int activityId) {
         log.info("accepted request to delete activity with id:{}", activityId);
-        activityService.delete(activityId);
+        activityService.deleteById(activityId);
         return ResponseEntity.noContent().build();
     }
 

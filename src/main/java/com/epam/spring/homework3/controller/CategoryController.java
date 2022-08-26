@@ -13,35 +13,36 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/category")
 public class CategoryController {
 
     private final CategoryService categoryService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/category")
+    @GetMapping
     public List<CategoryDto> getAllCategories() {
         log.info("accepted request to get all categories");
         return categoryService.getAll();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/category")
+    @PostMapping
     public CategoryDto createCategory(@RequestBody CategoryDto category) {
         log.info("accepted request to create category with name:{}", category.getTranslations());
         return categoryService.create(category);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/category")
+    @PutMapping
     public CategoryDto updateCategory(@RequestBody CategoryDto category) {
         log.info("accepted request to update category with id:{}", category.getId());
         return categoryService.update(category);
     }
 
-    @DeleteMapping("/category/{categoryId}")
+    @DeleteMapping("/{categoryId}")
     public ResponseEntity<Void> deleteCategory(@PathVariable int categoryId) {
         log.info("accepted request to delete category with id:{}", categoryId);
-        categoryService.delete(categoryId);
+        categoryService.deleteById(categoryId);
         return ResponseEntity.noContent().build();
     }
 

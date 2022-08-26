@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class TranslationDto {
 
-    int id;
-    String lang;
-    String name;
+    private int id;
+    private String lang;
+    private String name;
 
 }
