@@ -105,10 +105,10 @@ public class UserHasActivityControllerTest {
 
     @Test
     void givenUserHasActivityId_whenDeleteUserHasActivity_thenDeleteAndReturnNothing() throws Exception {
-        doNothing().when(userHasActivityService).delete(ID);
+        doNothing().when(userHasActivityService).deleteById(ID);
 
         mockMvc.perform(delete("/api/v1/user-has-activity/" + ID)).andDo(print()).andExpect(status().isNoContent());
-        verify(userHasActivityService, times(1)).delete(ID);
+        verify(userHasActivityService, times(1)).deleteById(ID);
     }
 
 }

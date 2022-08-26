@@ -37,7 +37,7 @@ public class UserController implements UserApi {
     @Override
     public ResponseEntity<Void> deleteUser(int userId) {
         log.info("accepted request to delete user with id:{}", userId);
-        userService.delete(userId);
+        userService.deleteById(userId);
         return ResponseEntity.noContent().build();
     }
 

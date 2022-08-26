@@ -127,12 +127,12 @@ public class CategoryControllerTest {
 
     @Test
     void givenCategoryId_whenDeleteCategory_thenDeleteAndReturnNothing() throws Exception {
-        doNothing().when(categoryService).delete(ID);
+        doNothing().when(categoryService).deleteById(ID);
 
         mockMvc.perform(delete("/api/v1/category/" + ID))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        verify(categoryService, times(1)).delete(ID);
+        verify(categoryService, times(1)).deleteById(ID);
     }
 
 }

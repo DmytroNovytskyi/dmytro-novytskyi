@@ -159,7 +159,7 @@ public class ActivityServiceImplTest {
         when(activityRepository.existsById(ID)).thenReturn(false);
 
         assertThatExceptionOfType(ActivityNotFoundException.class)
-                .isThrownBy(() -> activityService.delete(ID))
+                .isThrownBy(() -> activityService.deleteById(ID))
                 .withMessage("Activity was not found!");
 
         verify(activityRepository, times(1)).existsById(ID);
@@ -171,7 +171,7 @@ public class ActivityServiceImplTest {
         doNothing().when(activityRepository).deleteById(ID);
         when(activityRepository.existsById(ID)).thenReturn(true);
 
-        activityService.delete(ID);
+        activityService.deleteById(ID);
 
         verify(activityRepository, times(1)).deleteById(ID);
     }

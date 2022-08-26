@@ -134,7 +134,7 @@ public class UserServiceImplTest {
         when(userRepository.existsById(ID)).thenReturn(false);
 
         assertThatExceptionOfType(UserNotFoundException.class)
-                .isThrownBy(() -> userService.delete(ID))
+                .isThrownBy(() -> userService.deleteById(ID))
                 .withMessage("User was not found!");
 
         verify(userRepository, times(1)).existsById(ID);
@@ -146,7 +146,7 @@ public class UserServiceImplTest {
         doNothing().when(userRepository).deleteById(ID);
         when(userRepository.existsById(ID)).thenReturn(true);
 
-        userService.delete(ID);
+        userService.deleteById(ID);
 
         verify(userRepository, times(1)).deleteById(ID);
     }

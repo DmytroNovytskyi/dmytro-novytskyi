@@ -141,12 +141,12 @@ public class ActivityControllerTest {
 
     @Test
     void givenActivityId_whenDeleteActivity_thenDeleteAndReturnNothing() throws Exception {
-        doNothing().when(activityService).delete(ID);
+        doNothing().when(activityService).deleteById(ID);
 
         mockMvc.perform(delete("/api/v1/activity/" + ID))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        verify(activityService, times(1)).delete(ID);
+        verify(activityService, times(1)).deleteById(ID);
     }
 
 }

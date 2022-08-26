@@ -17,7 +17,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 @Api(tags = "UserHasActivity management API")
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/user-has-activity")
 @Validated
 public interface UserHasActivityApi {
 
@@ -38,7 +38,7 @@ public interface UserHasActivityApi {
     )
     @ApiOperation("Get page of sorted userHasActivities")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/user-has-activity")
+    @GetMapping
     Page<UserHasActivityDto> getSortedPagedUserHasActivities(@RequestParam(defaultValue = "0")
                                                              @Min(value = 0, message = "{userHasActivityApi.getSortedPagedUserHasActivities.page.min}")
                                                                      int page,
@@ -62,7 +62,7 @@ public interface UserHasActivityApi {
     )
     @ApiOperation("Create activity request")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/user-has-activity")
+    @PostMapping
     UserHasActivityDto requestActivity(@RequestBody @Validated(OnCreate.class)
                                                UserHasActivityDto userHasActivity);
 
@@ -74,7 +74,7 @@ public interface UserHasActivityApi {
     )
     @ApiOperation("Update userHasActivity")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/user-has-activity")
+    @PutMapping
     UserHasActivityDto updateUserHasActivity(@RequestBody @Validated(OnUpdate.class)
                                                      UserHasActivityDto userHasActivity);
 
@@ -85,7 +85,7 @@ public interface UserHasActivityApi {
                     value = "Id of userHasActivity to be deleted")
     )
     @ApiOperation("Delete userHasActivity")
-    @DeleteMapping("/user-has-activity/{userHasActivityId}")
+    @DeleteMapping("/{userHasActivityId}")
     ResponseEntity<Void> deleteUserHasActivity(@PathVariable int userHasActivityId);
 
 }

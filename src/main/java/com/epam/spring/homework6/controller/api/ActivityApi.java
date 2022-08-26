@@ -17,7 +17,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 @Api(tags = "Activity management API")
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/activity")
 @Validated
 public interface ActivityApi {
 
@@ -38,7 +38,7 @@ public interface ActivityApi {
     )
     @ApiOperation("Get page of sorted activities")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/activity")
+    @GetMapping
     Page<ActivityDto> getSortedPagedActivities(@RequestParam(defaultValue = "0")
                                                @Min(value = 0, message = "{activityApi.getSortedPagedActivities.page.min}")
                                                        int page,
@@ -62,7 +62,7 @@ public interface ActivityApi {
     )
     @ApiOperation("Create activity")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/activity")
+    @PostMapping
     ActivityDto createActivity(@RequestBody @Validated(OnCreate.class) ActivityDto activity);
 
     @ApiImplicitParams(
@@ -73,7 +73,7 @@ public interface ActivityApi {
     )
     @ApiOperation("Update activity")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/activity")
+    @PutMapping
     ActivityDto updateActivity(@RequestBody @Validated(OnUpdate.class) ActivityDto activity);
 
     @ApiImplicitParams(
@@ -84,7 +84,7 @@ public interface ActivityApi {
     )
     @ApiOperation("Delete activity")
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/activity/{activityId}")
+    @DeleteMapping("/{activityId}")
     ResponseEntity<Void> deleteActivity(@PathVariable int activityId);
 
 }

@@ -141,12 +141,12 @@ public class UserControllerTest {
 
     @Test
     void givenUserId_whenDeleteUser_thenDeleteAndReturnNothing() throws Exception {
-        doNothing().when(userService).delete(ID);
+        doNothing().when(userService).deleteById(ID);
 
         mockMvc.perform(delete("/api/v1/user/" + ID))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        verify(userService, times(1)).delete(ID);
+        verify(userService, times(1)).deleteById(ID);
     }
 
 }

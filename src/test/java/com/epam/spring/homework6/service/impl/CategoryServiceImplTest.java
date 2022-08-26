@@ -138,7 +138,7 @@ public class CategoryServiceImplTest {
         when(categoryRepository.existsById(ID)).thenReturn(false);
 
         assertThatExceptionOfType(CategoryNotFoundException.class)
-                .isThrownBy(() -> categoryService.delete(ID))
+                .isThrownBy(() -> categoryService.deleteById(ID))
                 .withMessage("Category was not found!");
 
         verify(categoryRepository, times(1)).existsById(ID);
@@ -150,7 +150,7 @@ public class CategoryServiceImplTest {
         doNothing().when(categoryRepository).deleteById(ID);
         when(categoryRepository.existsById(ID)).thenReturn(true);
 
-        categoryService.delete(ID);
+        categoryService.deleteById(ID);
 
         verify(categoryRepository, times(1)).deleteById(ID);
     }

@@ -82,7 +82,7 @@ public class UserHasActivityServiceImpl implements UserHasActivityService {
 
     @Override
     @Transactional
-    public void delete(int userHasActivityId) {
+    public void deleteById(int userHasActivityId) {
         log.info("deleting userHasActivity with id:{}", userHasActivityId);
         if (!userHasActivityRepository.existsById(userHasActivityId)) {
             throw new UserHasActivityNotFoundException();
