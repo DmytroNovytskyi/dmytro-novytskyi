@@ -1,6 +1,6 @@
 package com.epam.spring.homework4.controller.api;
 
-import com.epam.spring.homework4.controller.dto.UserHasActivityDto;
+import com.epam.spring.homework4.controller.dto.UserActivityDto;
 import com.epam.spring.homework4.controller.dto.validation.group.OnCreate;
 import com.epam.spring.homework4.controller.dto.validation.group.OnUpdate;
 import io.swagger.annotations.Api;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(tags = "UserHasActivity management API")
-@RequestMapping("api/v1/user-has-activity")
-public interface UserHasActivityApi {
+@Api(tags = "UserActivity management API")
+@RequestMapping("api/v1/user-activity")
+public interface UserActivityApi {
 
-    @ApiOperation("Get all userHasActivities")
+    @ApiOperation("Get all userActivities")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    List<UserHasActivityDto> getAllUserHasActivities();
+    List<UserActivityDto> getAllUserActivities();
 
     @ApiImplicitParams(
             @ApiImplicitParam(name = "body",
@@ -32,29 +32,29 @@ public interface UserHasActivityApi {
     @ApiOperation("Create activity request")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    UserHasActivityDto requestActivity(@RequestBody @Validated(OnCreate.class)
-                                               UserHasActivityDto userHasActivity);
+    UserActivityDto requestActivity(@RequestBody @Validated(OnCreate.class)
+                                               UserActivityDto userActivity);
 
     @ApiImplicitParams(
             @ApiImplicitParam(name = "body",
                     paramType = "body",
                     required = true,
-                    value = "Update userHasActivity")
+                    value = "Update userActivity")
     )
-    @ApiOperation("Update userHasActivity")
+    @ApiOperation("Update userActivity")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
-    UserHasActivityDto updateUserHasActivity(@RequestBody @Validated(OnUpdate.class)
-                                                     UserHasActivityDto userHasActivity);
+    UserActivityDto updateUserActivity(@RequestBody @Validated(OnUpdate.class)
+                                                     UserActivityDto userActivity);
 
     @ApiImplicitParams(
-            @ApiImplicitParam(name = "userHasActivityId",
+            @ApiImplicitParam(name = "userActivityId",
                     paramType = "path",
                     required = true,
-                    value = "Id of userHasActivity to be deleted")
+                    value = "Id of userActivity to be deleted")
     )
-    @ApiOperation("Delete userHasActivity")
-    @DeleteMapping("/{userHasActivityId}")
-    ResponseEntity<Void> deleteUserHasActivity(@PathVariable int userHasActivityId);
+    @ApiOperation("Delete userActivity")
+    @DeleteMapping("/{userActivityId}")
+    ResponseEntity<Void> deleteUserActivity(@PathVariable int userActivityId);
 
 }
