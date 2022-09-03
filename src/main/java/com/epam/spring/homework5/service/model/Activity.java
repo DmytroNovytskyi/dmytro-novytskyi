@@ -40,7 +40,7 @@ public class Activity {
     @Column(nullable = false)
     @OneToMany(mappedBy = "activity")
     @ToString.Exclude
-    private Set<UserHasActivity> userHasActivities;
+    private Set<UserActivity> userActivities;
 
     @Override
     public boolean equals(Object o) {

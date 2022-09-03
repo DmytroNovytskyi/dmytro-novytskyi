@@ -1,6 +1,6 @@
 package com.epam.spring.homework5.controller.api;
 
-import com.epam.spring.homework5.controller.dto.UserHasActivityDto;
+import com.epam.spring.homework5.controller.dto.UserActivityDto;
 import com.epam.spring.homework5.controller.dto.validation.group.OnCreate;
 import com.epam.spring.homework5.controller.dto.validation.group.OnUpdate;
 import io.swagger.annotations.Api;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
-@Api(tags = "UserHasActivity management API")
-@RequestMapping("api/v1/user-has-activity")
+@Api(tags = "UserActivity management API")
+@RequestMapping("api/v1/user-activity")
 @Validated
-public interface UserHasActivityApi {
+public interface UserActivityApi {
 
     @ApiImplicitParams({
             @ApiImplicitParam(name = "page",
@@ -36,22 +36,22 @@ public interface UserHasActivityApi {
                     paramType = "query",
                     value = "Order of sorting")}
     )
-    @ApiOperation("Get page of sorted userHasActivities")
+    @ApiOperation("Get page of sorted userActivities")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    Page<UserHasActivityDto> getSortedPagedUserHasActivities(@RequestParam(defaultValue = "0")
-                                                             @Min(value = 0, message = "{userHasActivityApi.getSortedPagedUserHasActivities.page.min}")
+    Page<UserActivityDto> getSortedPagedUserActivities(@RequestParam(defaultValue = "0")
+                                                             @Min(value = 0, message = "{userActivityApi.getSortedPagedUserActivities.page.min}")
                                                                      int page,
                                                              @RequestParam(defaultValue = "5")
-                                                             @Min(value = 0, message = "{userHasActivityApi.getSortedPagedUserHasActivities.size.min}")
+                                                             @Min(value = 0, message = "{userActivityApi.getSortedPagedUserActivities.size.min}")
                                                                      int size,
                                                              @RequestParam(defaultValue = "id")
                                                              @Pattern(regexp = "id|status|startTime|endTime|creationDate",
-                                                                     message = "{userHasActivityApi.getSortedPagedUserHasActivities.sortBy.pattern}")
+                                                                     message = "{userActivityApi.getSortedPagedUserActivities.sortBy.pattern}")
                                                                      String sortBy,
                                                              @RequestParam(defaultValue = "asc")
                                                              @Pattern(regexp = "asc|desc",
-                                                                     message = "{userHasActivityApi.getSortedPagedUserHasActivities.order.pattern}")
+                                                                     message = "{userActivityApi.getSortedPagedUserActivities.order.pattern}")
                                                                      String order);
 
     @ApiImplicitParams(
@@ -63,29 +63,29 @@ public interface UserHasActivityApi {
     @ApiOperation("Create activity request")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    UserHasActivityDto requestActivity(@RequestBody @Validated(OnCreate.class)
-                                               UserHasActivityDto userHasActivity);
+    UserActivityDto requestActivity(@RequestBody @Validated(OnCreate.class)
+                                               UserActivityDto userActivity);
 
     @ApiImplicitParams(
             @ApiImplicitParam(name = "body",
                     paramType = "body",
                     required = true,
-                    value = "Update userHasActivity")
+                    value = "Update userActivity")
     )
-    @ApiOperation("Update userHasActivity")
+    @ApiOperation("Update userActivity")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
-    UserHasActivityDto updateUserHasActivity(@RequestBody @Validated(OnUpdate.class)
-                                                     UserHasActivityDto userHasActivity);
+    UserActivityDto updateUserActivity(@RequestBody @Validated(OnUpdate.class)
+                                                     UserActivityDto userActivity);
 
     @ApiImplicitParams(
-            @ApiImplicitParam(name = "userHasActivityId",
+            @ApiImplicitParam(name = "userActivityId",
                     paramType = "path",
                     required = true,
-                    value = "Id of userHasActivity to be deleted")
+                    value = "Id of userActivity to be deleted")
     )
-    @ApiOperation("Delete userHasActivity")
-    @DeleteMapping("/{userHasActivityId}")
-    ResponseEntity<Void> deleteUserHasActivity(@PathVariable int userHasActivityId);
+    @ApiOperation("Delete userActivity")
+    @DeleteMapping("/{userActivityId}")
+    ResponseEntity<Void> deleteUserActivity(@PathVariable int userActivityId);
 
 }

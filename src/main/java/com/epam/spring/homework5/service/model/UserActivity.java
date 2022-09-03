@@ -1,6 +1,6 @@
 package com.epam.spring.homework5.service.model;
 
-import com.epam.spring.homework5.service.model.enums.UserHasActivityStatus;
+import com.epam.spring.homework5.service.model.enums.UserActivityStatus;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,7 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class UserHasActivity {
+public class UserActivity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +36,7 @@ public class UserHasActivity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserHasActivityStatus status;
+    private UserActivityStatus status;
 
     private Timestamp startTime;
 
@@ -50,7 +50,7 @@ public class UserHasActivity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        UserHasActivity that = (UserHasActivity) o;
+        UserActivity that = (UserActivity) o;
         return id != null && Objects.equals(id, that.id);
     }
 
