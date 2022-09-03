@@ -15,7 +15,7 @@ public interface ActivityMapper {
     ActivityMapper INSTANCE = Mappers.getMapper(ActivityMapper.class);
 
     @Mapping(target = "userCount",
-            expression = "java(activity.getUserHasActivities() == null ? 0 : activity.getUserHasActivities().size())")
+            expression = "java(activity.getUserActivities() == null ? 0 : activity.getUserActivities().size())")
     ActivityDto mapActivityDto(Activity activity);
 
     @Mapping(target = "id", defaultValue = "0")

@@ -34,9 +34,9 @@ INSERT INTO user(id, email, password, role, status, username)
 VALUES (1017, 'username2@gmail.com', 'password2@', 'ADMIN', 'ACTIVE', 'username2');
 INSERT INTO user(id, email, password, role, status, username)
 VALUES (1018, 'username3@gmail.com', 'password3#', 'WORKER', 'ACTIVE', 'username3');
-INSERT INTO user_has_activity(id, creation_date, end_time, start_time, status, activity_id, user_id)
+INSERT INTO user_activity(id, creation_date, end_time, start_time, status, activity_id, user_id)
 VALUES (1019, '2022-07-24 15:42:49', '2022-07-24 15:42:52', '2022-07-24 15:42:50', 'COMPLETED', 1013, 1016);
-INSERT INTO user_has_activity(id, creation_date, end_time, start_time, status, activity_id, user_id)
+INSERT INTO user_activity(id, creation_date, end_time, start_time, status, activity_id, user_id)
 VALUES (1020, '2022-07-24 15:43:49', null, null, 'PENDING_ASSIGN', 1014, 1017);
-INSERT INTO user_has_activity(id, creation_date, end_time, start_time, status, activity_id, user_id)
+INSERT INTO user_activity(id, creation_date, end_time, start_time, status, activity_id, user_id)
 VALUES (1021, '2022-07-24 15:44:49', '2022-07-24 15:44:52', '2022-07-24 15:44:50', 'COMPLETED', 1013, 1016);

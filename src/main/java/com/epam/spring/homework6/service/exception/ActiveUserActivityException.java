@@ -1,10 +1,10 @@
 package com.epam.spring.homework6.service.exception;
 
-public class ActiveUserHasActivityException extends ValidationException {
+public class ActiveUserActivityException extends ValidationException {
 
     private static final String message = "Request for this user and activity is already active!";
 
-    public ActiveUserHasActivityException() {
+    public ActiveUserActivityException() {
         super(message);
     }
 

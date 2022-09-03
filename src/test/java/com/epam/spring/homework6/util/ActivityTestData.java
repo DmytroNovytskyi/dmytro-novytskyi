@@ -75,7 +75,7 @@ public class ActivityTestData {
                 .status(ActivityStatus.OPENED)
                 .category(CategoryTestData.createCategory())
                 .description(DESCRIPTION)
-                .userHasActivities(new HashSet<>())
+                .userActivities(new HashSet<>())
                 .build();
     }
 

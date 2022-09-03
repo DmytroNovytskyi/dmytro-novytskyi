@@ -21,7 +21,7 @@ import java.util.Objects;
 import static com.epam.spring.homework6.util.ActivityTestData.createActivityDto;
 import static com.epam.spring.homework6.util.CategoryTestData.createCategoryDto;
 import static com.epam.spring.homework6.util.CommonTestData.*;
-import static com.epam.spring.homework6.util.UserHasActivityTestData.createUserHasActivityDto;
+import static com.epam.spring.homework6.util.UserActivityTestData.createUserActivityDto;
 import static com.epam.spring.homework6.util.UserTestData.PASSWORD;
 import static com.epam.spring.homework6.util.UserTestData.createUserDto;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -104,28 +104,28 @@ public class SpringTimekeeperApplicationTest {
     }
 
     @Test
-    void givenPageableData_whenGetSortedPagedUserHasActivities_thenReturnPageOfUserHasActivities() {
-        ResponseEntity<PaginatedResponse<UserHasActivityDto>> response = restTemplate
-                .exchange(baseUrl + "user-has-activity" + paginationParameters,
+    void givenPageableData_whenGetSortedPagedUserActivities_thenReturnPageOfUserActivities() {
+        ResponseEntity<PaginatedResponse<UserActivityDto>> response = restTemplate
+                .exchange(baseUrl + "user-activity" + paginationParameters,
                         HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<>() {
                         });
-        Page<UserHasActivityDto> userHasActivityDtoPage = response.getBody();
-        List<String> usernames = Objects.requireNonNull(userHasActivityDtoPage).getContent().stream()
+        Page<UserActivityDto> userActivityDtoPage = response.getBody();
+        List<String> usernames = Objects.requireNonNull(userActivityDtoPage).getContent().stream()
                 .map(u -> u.getUser().getUsername())
                 .filter(n -> n.equals("username1"))
                 .distinct()
                 .toList();
-        List<String> activityNames = Objects.requireNonNull(userHasActivityDtoPage).getContent().stream()
+        List<String> activityNames = Objects.requireNonNull(userActivityDtoPage).getContent().stream()
                 .map(u -> u.getActivity().getName())
                 .filter(n -> n.equals("activity1"))
                 .distinct()
                 .toList();
 
-        assertThat(userHasActivityDtoPage, notNullValue());
-        assertThat(userHasActivityDtoPage.getSize(), is(SIZE));
-        assertThat(userHasActivityDtoPage.getNumber(), is(PAGE));
+        assertThat(userActivityDtoPage, notNullValue());
+        assertThat(userActivityDtoPage.getSize(), is(SIZE));
+        assertThat(userActivityDtoPage.getNumber(), is(PAGE));
         assertThat(usernames, containsInAnyOrder("username1"));
         assertThat(activityNames, containsInAnyOrder("activity1"));
     }
@@ -175,19 +175,19 @@ public class SpringTimekeeperApplicationTest {
     }
 
     @Test
-    void givenValidUserHasActivityDto_whenRequestActivity_thenReturnCreatedUserHasActivityDto() {
-        UserHasActivityDto userHasActivityDto = createUserHasActivityDto();
-        userHasActivityDto.setStatus(null);
-        userHasActivityDto.getUser().setId(1016);
-        userHasActivityDto.getActivity().setId(1013);
+    void givenValidUserActivityDto_whenRequestActivity_thenReturnCreatedUserActivityDto() {
+        UserActivityDto userActivityDto = createUserActivityDto();
+        userActivityDto.setStatus(null);
+        userActivityDto.getUser().setId(1016);
+        userActivityDto.getActivity().setId(1013);
 
-        ResponseEntity<UserHasActivityDto> response = restTemplate
-                .postForEntity(baseUrl + "user-has-activity", userHasActivityDto, UserHasActivityDto.class);
-        UserHasActivityDto returnedUserHasActivityDto = response.getBody();
+        ResponseEntity<UserActivityDto> response = restTemplate
+                .postForEntity(baseUrl + "user-activity", userActivityDto, UserActivityDto.class);
+        UserActivityDto returnedUserActivityDto = response.getBody();
 
         assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
-        assertThat(returnedUserHasActivityDto, notNullValue());
-        assertThat(returnedUserHasActivityDto.getId(), notNullValue());
+        assertThat(returnedUserActivityDto, notNullValue());
+        assertThat(returnedUserActivityDto.getId(), notNullValue());
     }
 
     @Test
@@ -245,20 +245,20 @@ public class SpringTimekeeperApplicationTest {
     }
 
     @Test
-    void givenValidUserHasActivityDto_whenUpdateUserHasActivity_thenReturnUpdatedUserHasActivityDto() {
-        UserHasActivityDto userHasActivityDtoBeforeUpdate = new UserHasActivityDto();
-        userHasActivityDtoBeforeUpdate.setId(1020);
-        userHasActivityDtoBeforeUpdate.setStatus("ASSIGNED");
-        HttpEntity<UserHasActivityDto> request = new HttpEntity<>(userHasActivityDtoBeforeUpdate);
+    void givenValidUserActivityDto_whenUpdateUserActivity_thenReturnUpdatedUserActivityDto() {
+        UserActivityDto userActivityDtoBeforeUpdate = new UserActivityDto();
+        userActivityDtoBeforeUpdate.setId(1020);
+        userActivityDtoBeforeUpdate.setStatus("ASSIGNED");
+        HttpEntity<UserActivityDto> request = new HttpEntity<>(userActivityDtoBeforeUpdate);
 
-        ResponseEntity<UserHasActivityDto> response = restTemplate
-                .exchange(baseUrl + "user-has-activity", HttpMethod.PUT, request, UserHasActivityDto.class);
-        UserHasActivityDto returnedUserHasActivityDto = response.getBody();
+        ResponseEntity<UserActivityDto> response = restTemplate
+                .exchange(baseUrl + "user-activity", HttpMethod.PUT, request, UserActivityDto.class);
+        UserActivityDto returnedUserActivityDto = response.getBody();
 
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
-        assertThat(returnedUserHasActivityDto, notNullValue());
-        assertThat(returnedUserHasActivityDto.getId(), is(1020));
-        assertThat(returnedUserHasActivityDto.getStatus(), is("ASSIGNED"));
+        assertThat(returnedUserActivityDto, notNullValue());
+        assertThat(returnedUserActivityDto.getId(), is(1020));
+        assertThat(returnedUserActivityDto.getStatus(), is("ASSIGNED"));
     }
 
     @Test
@@ -289,9 +289,9 @@ public class SpringTimekeeperApplicationTest {
     }
 
     @Test
-    void givenUserHasActivityId_whenDeleteUserHasActivity_thenDeleteAndReturnNothing() {
+    void givenUserActivityId_whenDeleteUserActivity_thenDeleteAndReturnNothing() {
         ResponseEntity<Void> response = restTemplate
-                .exchange(baseUrl + "user-has-activity/" + 1021, HttpMethod.DELETE, HttpEntity.EMPTY, Void.class);
+                .exchange(baseUrl + "user-activity/" + 1021, HttpMethod.DELETE, HttpEntity.EMPTY, Void.class);
         assertThat(response.getStatusCode(), is(HttpStatus.NO_CONTENT));
         assertThat(response, notNullValue());
         assertThat(response.getBody(), nullValue());
